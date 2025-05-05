@@ -15,8 +15,8 @@
 
 **TG Usage Relationship Objects** is a toolkit of two ServiceNow developer tools:
 
-- **Script Include and Function Usage**: Track where Script Includes and their methods are used
-- **Usage Field**: Detect field references across scripts using `sys_dictionary` field `sys_id`
+- **Script Include and Function Usage** – Track where Script Includes and their methods are used.
+- **Usage Field** – Detect field references across scripts using a `sys_dictionary` field `sys_id`.
 
 These tools help:
 - Perform fast impact analysis
@@ -31,14 +31,16 @@ These tools help:
 ### 1. Script Include and Function Usage
 
 ```
+
 Script Include and Function Usage/
 ├── BackgraundScript/
 │   └── backgraundScriptWithFunctionSearch.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
+
 ```
 
 #### ✅ Features
@@ -55,19 +57,23 @@ Script Include and Function Usage/
 - Grouped view vs tabular view (with toggle)
 - Modal for full script
 - Copy to clipboard
-- CSV Export
+- CSV export
+
+---
 
 ### 2. Usage Field
 
 ```
+
 Usage Field/
 ├── BackgraundScript/
 │   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
+
 ```
 
 #### ✅ Features
@@ -83,7 +89,7 @@ Usage Field/
 ## 🛠️ Installation Instructions
 
 1. Upload widget files via the Service Portal widget editor
-2. Use background script under `System Definition > Scripts - Background`
+2. Use background script under **System Definition > Scripts - Background**
 3. Add widget to a Service Portal page
 
 ---
@@ -114,5 +120,6 @@ Usage Field/
 
 ### Usage Field – Table View
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
+```
 
 ---
