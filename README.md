@@ -1,12 +1,16 @@
+Thought for a couple of seconds
+
+
+```markdown
 # TG Usage Relationship Objects
 
 ## 📁 Table of Contents
 
-## 📁 Table of Contents
 - [📖 Overview](#overview)
 - [📁 Repository Structure](#repository-structure)
   - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
   - [2. Usage Field](#2-usage-field)
+  - [3. Usage Field with Local Storage](#3-usage-field-with-local-storage)
 - [🛠️ Installation Instructions](#installation-instructions)
 - [🚀 Usage Examples](#usage-examples)
 - [🖼️ Screenshots](#screenshots)
@@ -17,16 +21,16 @@
 
 **TG Usage Relationship Objects** is a toolkit of three ServiceNow developer tools:
 
-- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.
-- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.
-- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.
+- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.  
+- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.  
+- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.  
 
 These tools help you:
 
-- Perform fast impact analysis
-- Improve script maintenance and documentation
-- Validate safe refactoring
-- Streamline debugging across your ServiceNow instance
+- Perform fast impact analysis  
+- Improve script maintenance and documentation  
+- Validate safe refactoring  
+- Streamline debugging across your ServiceNow instance  
 
 ---
 
@@ -49,20 +53,20 @@ Script Include and Function Usage/
 
 #### ✅ Features
 
-- Query by Script Include or a specific method
-- Function detection using RegExp
+- Query by Script Include or a specific method  
+- Function detection using RegExp  
 - Scans:
-  - Business Rules
-  - Client Scripts
-  - Script Includes
-  - UI Actions
-  - Scripted REST APIs
-  - Flow Designer Flows
-  - Scheduled Jobs
-- Toggle between Grouped and Table views
-- Full script preview modal
-- Copy matched lines to clipboard
-- Export results to CSV
+  - Business Rules  
+  - Client Scripts  
+  - Script Includes  
+  - UI Actions  
+  - Scripted REST APIs  
+  - Flow Designer Flows  
+  - Scheduled Jobs  
+- Toggle between Grouped and Table views  
+- Full script preview modal  
+- Copy matched lines to clipboard  
+- Export results to CSV  
 
 ---
 
@@ -83,18 +87,16 @@ Usage Field/
 
 #### ✅ Features
 
-- Accepts a `sys_id` from the `sys_dictionary` table
-- Detects references in major scripting tables
-- Grouped view and flat table view toggle
-- Displays line number and matched lines
-- Full script modal
-- CSV export and inline copy support
+- Accepts a `sys_id` from the `sys_dictionary` table  
+- Detects references in major scripting tables  
+- Toggle between Grouped and Table views  
+- Displays line numbers and matched lines  
+- Full script preview modal  
+- Export results to CSV & copy to clipboard  
 
 ---
 
 ### 3. Usage Field with Local Storage
-
-[🔗 View Source Code ›](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage)
 
 ```
 
@@ -111,20 +113,23 @@ Usage Field with Local Storage/
 
 #### ✅ Features
 
-- All capabilities of the **Usage Field** widget
+- All capabilities of the **Usage Field** widget  
 - **Local Storage Tracker**:
-  - Automatically saves the last 10 `sys_id` lookups to local storage
-  - Displays saved history with timestamp
-  - One-click to re-populate a previous field
-  - Clear history or delete individual entries
-- History panel is hidden by default but included in the code for future enablement
+  - Automatically saves the last 10 `sys_id` lookups to browser localStorage  
+  - Displays saved history with timestamps  
+  - One-click re-population of a previous lookup  
+  - Delete individual entries or clear entire history  
+
+**View source code:**  
+<https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage>
 
 ---
 
 ## 🛠️ Installation Instructions
 
-1. Upload widget files using the Service Portal Widget Editor
-2. Add the widget to a Service Portal page
+1. Upload widget files using the Service Portal Widget Editor.  
+2. Execute the corresponding Background Script under **System Definition > Scripts - Background**.  
+3. Add the widget to a Service Portal page.  
 
 ---
 
@@ -132,20 +137,20 @@ Usage Field with Local Storage/
 
 ### 🔍 Script Include + Function
 
-- Enter the Script Include `sys_id`
-- Optionally enter a specific function (e.g., `addPDFConversionNote`)
-- Click **Find Usage** to locate where it's called in the system
+1. Enter the Script Include `sys_id`.  
+2. Optionally specify a method (e.g., `addPDFConversionNote`).  
+3. Click **Find Usage** to locate references.  
 
 ### 📘 Usage Field
 
-- Enter the `sys_id` of a field from the `sys_dictionary` table
-- Review all script references where this field appears
+1. Enter a field `sys_id` from the `sys_dictionary` table.  
+2. Click **Find Usage** to see where it appears in scripts.  
 
 ### 💾 Usage Field with Local Storage
 
-- Same as Usage Field, but each lookup is automatically stored in browser localStorage
-- Recent lookups (max 10) are displayed with date and clickable links
-- Track your analysis across sessions
+1. Same as **Usage Field**, but each lookup is saved automatically.  
+2. Recent lookups (up to 10) are shown with date and time.  
+3. Click a saved entry to re-run the lookup.  
 
 ---
 
@@ -162,6 +167,4 @@ Usage Field with Local Storage/
 
 ### Usage Field – Table View  
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
-
----
-
+```
