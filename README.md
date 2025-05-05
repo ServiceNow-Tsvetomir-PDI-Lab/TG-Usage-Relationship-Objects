@@ -4,14 +4,10 @@
 - [Overview](#-overview)
 - [Repository Structure](#-repository-structure)
   - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
-    - [Background Script](#background-script)
-    - [Widget](#widget)
   - [2. Usage Field](#2-usage-field)
-    - [Background Script](#background-script-1)
-    - [Widget](#widget-1)
 - [Installation Instructions](#-installation-instructions)
 - [Usage Examples](#-usage-examples)
-- [Screenshots](#-screenshots)
+- [Screenshots](#screenshots)
 
 ---
 
