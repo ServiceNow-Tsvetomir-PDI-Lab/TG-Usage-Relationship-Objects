@@ -108,15 +108,13 @@ Usage Field/
 ## 🖼️ Screenshots
 
 ### Script Include and Function Usage – Group View
-![Group View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/script_include_group_view.png)
+![Script Include – Group](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
 
 ### Script Include and Function Usage – Table View
-![Table View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/script_include_table_view.png)
+![Script Include – Table](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
 
 ### Usage Field – Group View
-![Group View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/usage_field_group_view.png)
+![Usage Field – Group](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Usage%20Field%20Group%20Mode.png)
 
 ### Usage Field – Table View
-![Table View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/usage_field_table_view.png)
-
----
+![Usage Field – Table](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Usage%20Field%20Table%20Mode.png)
