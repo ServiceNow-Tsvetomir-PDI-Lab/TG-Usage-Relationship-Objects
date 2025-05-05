@@ -11,7 +11,7 @@
 
 ---
 
-## 🧠 Overview
+## 📖 Overview
 
 **TG Usage Relationship Objects** is a toolkit of two ServiceNow developer tools:
 
@@ -104,15 +104,15 @@ Usage Field/
 ## 🖼️ Screenshots
 
 ### Script Include and Function Usage – Group View
-![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png?raw=true)
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
 
 ### Script Include and Function Usage – Table View
-![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png?raw=true)
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
 
 ### Usage Field – Group View
-![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Usage%20Field%20Group%20Mode.png?raw=true)
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Group%20Mode.png)
 
 ### Usage Field – Table View
-![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Usage%20Field%20Table%20Mode.png?raw=true)
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
 
 ---
