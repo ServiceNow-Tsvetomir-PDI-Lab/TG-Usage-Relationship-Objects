@@ -1,6 +1,6 @@
 # TG Usage Relationship Objects
 
-## 📑 Table of Contents
+## 📁 Table of Contents
 - [Overview](#overview)
 - [Repository Structure](#repository-structure)
   - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
@@ -19,21 +19,23 @@
 
 ## 🧠 Overview
 
-**TG Usage Relationship Objects** is a toolkit of two powerful ServiceNow developer utilities—**Script Include and Function Usage** and **Field Usage Finder**—which allow deep introspection into how backend code and fields are referenced throughout your instance.
+**TG Usage Relationship Objects** is a set of two professional-grade tools for ServiceNow developers:
+- **Script Include and Function Usage** – tracks where specific Script Includes and functions are used
+- **Usage Field** – detects where a given dictionary field is referenced in scripts and configuration
 
-These tools empower ServiceNow platform engineers, admins, and architects to:
-- Trace where Script Includes and specific functions are invoked
-- Detect impact of fields before deleting/refactoring them
-- Visualize usage grouped by object type or as flat table
-- Export findings or copy snippets with ease
+These tools are designed to support:
+- Efficient debugging
+- Safer refactoring
+- Impact analysis
+- Documentation of technical dependencies
 
 ---
 
-## 📁 Repository Structure
+## 📅 Repository Structure
 
 ### 1. Script Include and Function Usage
 
-Identifies where a Script Include and (optionally) a function is referenced across your ServiceNow instance.
+Finds references to a Script Include or a specific function inside it across the entire ServiceNow instance.
 
 ```
 Script Include and Function Usage/
@@ -47,26 +49,26 @@ Script Include and Function Usage/
 ```
 
 #### ✅ Features
-- Supports both Script Include only or Script Include + Function search
-- Validates function existence via RegExp
-- Checks all major scriptable components:
+- Search by Script Include only or include specific function
+- Verifies function existence using RegExp
+- Scans:
   - Business Rules
   - Client Scripts
   - Script Includes
   - UI Actions
-  - Scripted REST APIs
+  - Scripted REST API Operations
   - Flow Designer Flows
   - Scheduled Scripts
-- Supports grouped vs tabular result views
-- Modal for full script view
-- Copy-to-clipboard
-- CSV Export
+- Toggle button to switch between **grouped view** and **tabular view**
+- Full script modal
+- Clipboard support
+- CSV export
 
 ---
 
 ### 2. Usage Field
 
-Finds usage of a given **field (element)** across all relevant backend scripts by passing the `sys_id` from `sys_dictionary`.
+Finds where a given `sys_dictionary` field is referenced in your instance.
 
 ```
 Usage Field/
@@ -80,48 +82,48 @@ Usage Field/
 ```
 
 #### ✅ Features
-- Takes a field's sys_id as input
-- Analyzes across same table types as above
-- Returns line(s), row(s), and full match content
-- View as grouped by type or in flat table
-- Export results as CSV
-- Full script modal viewer
+- Input: field `sys_id` from `sys_dictionary`
+- Searches same tables as Script Include mode
+- Shows matching rows, lines, and script excerpts
+- View mode toggle: grouped / tabular
+- Copy & export tools
+- Modal viewer for full script
 
 ---
 
 ## 🛠️ Installation Instructions
 
-1. Navigate to either tool folder (e.g. `Script Include and Function Usage/Widget`) and:
-   - Import widget files in your ServiceNow instance
-   - Paste background script into `Background Scripts` module to use standalone
-2. Add the widget to a page in your Service Portal
+1. Import the widget files into your ServiceNow instance
+2. Paste the background script into `Background Scripts` for server-side scanning
+3. Place the widget on a Service Portal page to use interactively
 
 ---
 
 ## 🚀 Usage Examples
 
-### 1. Script Include and Function Search
-- Provide a Script Include sys_id to get all usages
-- Optionally, specify function name(addPDFConversionNote) to find direct invocations like `HRPDFUtils().addPDFConversionNote()`
+### 1. Script Include + Function
+- Enter the Script Include's `sys_id`
+- Optionally specify a function name (e.g., `addPDFConversionNote`)
+- Output will include all references across applicable objects
 
-### 2. Field Usage Analysis
-- Paste sys_id from any field in `sys_dictionary`
-- Get a full map of references to that field (e.g., `'leaverequest_start_date'`)
+### 2. Field Usage
+- Input the `sys_id` of a field from the `sys_dictionary`
+- The tool will display every script where the field is mentioned
 
 ---
 
 ## 🖼️ Screenshots
 
 ### Script Include and Function Usage - Group View
-![Group View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/images/script_include_group_view.png)
+![Group View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/script_include_group_view.png)
 
 ### Script Include and Function Usage - Table View
-![Table View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/images/script_include_table_view.png)
+![Table View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/script_include_table_view.png)
 
 ### Usage Field - Group View
-![Group View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/images/usage_field_group_view.png)
+![Group View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/usage_field_group_view.png)
 
 ### Usage Field - Table View
-![Table View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/images/usage_field_table_view.png)
+![Table View](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/usage_field_table_view.png)
 
 ---
