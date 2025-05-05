@@ -102,12 +102,10 @@ Usage Field/
 ```
 
 Usage Field with Local Storage/
-├── BackgraundScript/
-│   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
 
 ```
