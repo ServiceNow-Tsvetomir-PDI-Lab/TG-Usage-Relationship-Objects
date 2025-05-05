@@ -4,34 +4,37 @@
 
 - [📖 Overview](#overview)
 - [📁 Repository Structure](#repository-structure)
-  - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
-  - [2. Usage Field](#2-usage-field)
-  - [3. Usage Field with Local Storage](#3-usage-field-with-local-storage)
+  - [1. Script Include and Function Usage](#script-include-and-function-usage)
+  - [2. Usage Field](#usage-field)
+  - [3. Usage Field with Local Storage](#usage-field-with-local-storage)
 - [🛠️ Installation Instructions](#installation-instructions)
 - [🚀 Usage Examples](#usage-examples)
 - [🖼️ Screenshots](#screenshots)
 
 ---
 
+<a id="overview"></a>
 ## 📖 Overview
 
 **TG Usage Relationship Objects** is a toolkit of three ServiceNow developer tools:
 
-- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.  
-- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.  
-- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.  
+- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.
+- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.
+- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.
 
 These tools help you:
 
-- Perform fast impact analysis  
-- Improve script maintenance and documentation  
-- Validate safe refactoring  
-- Streamline debugging across your ServiceNow instance  
+- Perform fast impact analysis
+- Improve script maintenance and documentation
+- Validate safe refactoring
+- Streamline debugging across your ServiceNow instance
 
 ---
 
+<a id="repository-structure"></a>
 ## 📁 Repository Structure
 
+<a id="script-include-and-function-usage"></a>
 ### 1. Script Include and Function Usage
 
 ```
@@ -52,13 +55,13 @@ Script Include and Function Usage/
 - Query by Script Include or a specific method  
 - Function detection using RegExp  
 - Scans:
-  - Business Rules  
-  - Client Scripts  
-  - Script Includes  
-  - UI Actions  
-  - Scripted REST APIs  
-  - Flow Designer Flows  
-  - Scheduled Jobs  
+  - Business Rules
+  - Client Scripts
+  - Script Includes
+  - UI Actions
+  - Scripted REST APIs
+  - Flow Designer Flows
+  - Scheduled Jobs
 - Toggle between Grouped and Table views  
 - Full script preview modal  
 - Copy matched lines to clipboard  
@@ -66,6 +69,7 @@ Script Include and Function Usage/
 
 ---
 
+<a id="usage-field"></a>
 ### 2. Usage Field
 
 ```
@@ -92,6 +96,7 @@ Usage Field/
 
 ---
 
+<a id="usage-field-with-local-storage"></a>
 ### 3. Usage Field with Local Storage
 
 ```
@@ -121,6 +126,7 @@ Usage Field with Local Storage/
 
 ---
 
+<a id="installation-instructions"></a>
 ## 🛠️ Installation Instructions
 
 1. Upload widget files using the Service Portal Widget Editor.  
@@ -129,6 +135,7 @@ Usage Field with Local Storage/
 
 ---
 
+<a id="usage-examples"></a>
 ## 🚀 Usage Examples
 
 ### 🔍 Script Include + Function
@@ -150,6 +157,7 @@ Usage Field with Local Storage/
 
 ---
 
+<a id="screenshots"></a>
 ## 🖼️ Screenshots
 
 ### Script Include and Function Usage – Group View  
