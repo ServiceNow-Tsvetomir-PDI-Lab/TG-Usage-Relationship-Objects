@@ -1,7 +1,3 @@
-Thought for a couple of seconds
-
-
-```markdown
 # TG Usage Relationship Objects
 
 ## 📁 Table of Contents
