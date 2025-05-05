@@ -1,48 +1,44 @@
 (function() {
 
-  // Handle full script view request first (called from client via .get())
+  // If the client is requesting full script view, handle here first
   if (input && input.action === 'getScript') {
     var table = input.table;
     var sys_id = input.sys_id;
-
-    // gs.info('[DEBUG] getScript called for table=' + table + ', sys_id=' + sys_id);
 
     var record = new GlideRecord(table);
     if (record.get(sys_id)) {
       var possibleFields = ['script', 'operation_script', 'flow', 'definition', 'xml'];
       for (var i = 0; i < possibleFields.length; i++) {
         var field = possibleFields[i];
-        // gs.info('[DEBUG] Checking field=' + field + ', valid=' + record.isValidField(field));
         if (record.isValidField(field)) {
           var value = record.getValue(field);
           if (value) {
             data.script = value;
-            // gs.info('[DEBUG] Found script in field=' + field);
             return;
           }
         }
       }
       data.script = '[Script field exists but is empty or unsupported]';
-      gs.info('[DEBUG] No script content found in any expected field.');
     } else {
       data.script = '[Record not found]';
-      gs.info('[DEBUG] Record not found.');
     }
     return;
   }
 
-  // Default execution: find field usage
+  // Default execution path - find references to a given field
   data.results = [];
   data.error = '';
   data.fieldName = '';
 
+  // Validate input
   if (!input || !input.fieldSysId) {
     return;
   }
 
   var fieldSysId = input.fieldSysId;
-
   var dictGr = new GlideRecord('sys_dictionary');
+
+  // Lookup field name by sys_id
   if (dictGr.get(fieldSysId)) {
     data.fieldName = dictGr.element.toString();
   } else {
@@ -50,6 +46,7 @@
     return;
   }
 
+  // Tables and fields to scan for usage
   var tablesToCheck = [
     { table: 'sys_script', field: 'script', type: 'Business Rule' },
     { table: 'sys_script_include', field: 'script', type: 'Script Include' },
@@ -61,6 +58,7 @@
     { table: 'sysauto_script', field: 'script', type: 'Scheduled Script Execution' }
   ];
 
+  // Search each table for the field name
   for (var i = 0; i < tablesToCheck.length; i++) {
     var info = tablesToCheck[i];
     var gr = new GlideRecord(info.table);
@@ -72,6 +70,7 @@
       var matchLines = [];
       var matchRows = [];
 
+      // Collect lines and line numbers that contain the field name
       if (script) {
         var lines = script.split(/\r?\n/);
         lines.forEach(function(line, idx) {
@@ -82,6 +81,7 @@
         });
       }
 
+      // Push results into the output array
       data.results.push({
         type: info.type,
         table: info.table,

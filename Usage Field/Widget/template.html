@@ -1,37 +1,66 @@
+<!-- Main container for the Field Usage Finder widget -->
 <div class="container p-4">
   <h3>Field Usage Finder</h3>
 
+  <!-- Informational alert explaining what this tool does -->
+  <div class="alert alert-info mt-3">
+    <strong>What is this?</strong><br>
+    This tool helps you find where a specific field (from the <code>sys_dictionary</code> table) is referenced across your instance. Useful for refactoring and impact analysis.
+  </div>
+
+  <!-- Instructions for how to use the widget -->
+  <div class="alert alert-secondary">
+    <strong>How to Use:</strong>
+    <ol class="mt-2 mb-0 ps-3">
+      <li>Go to <code>System Definition > Dictionary</code> and find your field.</li>
+      <li>Copy its <code>sys_id</code>.</li>
+      <li>Paste it in the input box below and click <strong>Find Usage</strong>.</li>
+      <li>Switch between <strong>Grouped</strong> and <strong>Table</strong> view as needed.</li>
+    </ol>
+  </div>
+
+  <!-- Useful tips for using the results viewer -->
+  <div class="alert alert-warning">
+    <strong>Tips:</strong><br>
+    - Fields used in scripts may appear multiple times.<br>
+    - You can copy the exact lines or open the full script via buttons provided in results.<br>
+    - Use <strong>Clear</strong> to reset and run a new search.
+  </div>
+
+  <!-- Input field for the sys_id of the dictionary field -->
   <div class="form-group">
     <label>Field sys_id (from sys_dictionary)</label>
     <input type="text" class="form-control" ng-model="c.data.fieldSysId" placeholder="Enter field sys_id">
   </div>
 
+  <!-- Action buttons for searching, exporting, and clearing results -->
   <button class="btn btn-primary mt-3 me-2" ng-click="c.findUsage()">Find Usage</button>
   <button class="btn btn-outline-secondary mt-3 me-2" ng-if="c.data.results && c.data.results.length" ng-click="c.exportToCSV()">
     Export to CSV
   </button>
   <button class="btn btn-danger mt-3" ng-if="c.data.results && c.data.results.length" ng-click="c.clearResults()">Clear</button>
 
-  <!-- Toggle View Switch -->
+  <!-- Toggle switch to change between group and table view -->
   <div class="form-check mt-3" ng-if="c.data.results.length">
-  <label class="form-check-label me-2" for="toggleViewSwitch">
-    {{ c.data.viewMode === 'group' ? 'Grouped View' : 'Table View' }}
-  </label>
-  <label class="switch">
-    <input type="checkbox"
-           id="toggleViewSwitch"
-           ng-model="c.data.viewModeSwitch"
-           ng-change="c.toggleViewFromSwitch()">
-    <span class="slider"></span>
-  </label>
-</div>
+    <label class="form-check-label me-2" for="toggleViewSwitch">
+      {{ c.data.viewMode === 'group' ? 'Grouped View' : 'Table View' }}
+    </label>
+    <label class="switch">
+      <input type="checkbox"
+             id="toggleViewSwitch"
+             ng-model="c.data.viewModeSwitch"
+             ng-change="c.toggleViewFromSwitch()">
+      <span class="slider"></span>
+    </label>
+  </div>
 
+  <!-- Error alert if something goes wrong during processing -->
   <div ng-if="c.data.error" class="alert alert-danger mt-3">
     {{ c.data.error }}
   </div>
 </div>
 
-<!-- Grouped View -->
+<!-- GROUPED VIEW block: Results grouped by object type (e.g., Business Rule, Client Script, etc.) -->
 <div ng-if="c.data.viewMode === 'group' && c.data.results && c.data.results.length > 0">
   <h5>Results for: {{ c.data.fieldName }}</h5>
   <div ng-repeat="(type, group) in c.groupedResults">
@@ -54,7 +83,7 @@
   </div>
 </div>
 
-<!-- Table View -->
+<!-- TABLE VIEW block: Flat list of all results in a sortable table -->
 <div ng-if="c.data.viewMode === 'table' && c.data.results && c.data.results.length > 0" class="mt-4">
   <h5>Results for: {{ c.data.fieldName }}</h5>
   <table class="table table-striped mt-3">
@@ -89,7 +118,7 @@
   </table>
 </div>
 
-<!-- Modal -->
+<!-- MODAL: Used to show the entire script content for selected match -->
 <div class="modal fade" id="scriptModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">

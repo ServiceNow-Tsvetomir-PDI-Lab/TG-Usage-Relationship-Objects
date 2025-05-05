@@ -1,13 +1,16 @@
 api.controller = function($scope) {
-	var c = this;
-	
-	$scope.c.data.viewModeSwitch = true; // default: Grouped View
-	$scope.c.data.viewMode = 'group';
-	$scope.c.toggleViewFromSwitch = function () {
-  $scope.c.data.viewMode = $scope.c.data.viewModeSwitch ? 'group' : 'table';
-};
+  var c = this;
 
+  // Set default view mode to 'group' and bind the toggle switch
+  $scope.c.data.viewModeSwitch = true;
+  $scope.c.data.viewMode = 'group';
 
+  // Toggles view mode based on switch state (Grouped/Table)
+  $scope.c.toggleViewFromSwitch = function () {
+    $scope.c.data.viewMode = $scope.c.data.viewModeSwitch ? 'group' : 'table';
+  };
+
+  // Watch for changes in the results and re-group them by type
   $scope.$watch('c.data.results', function(newVal) {
     $scope.c.groupedResults = {};
     (newVal || []).forEach(function(r) {
@@ -16,16 +19,18 @@ api.controller = function($scope) {
     });
   });
 
-	$scope.c.findUsage = function () {
-  $scope.server.update({
-    scriptIncludeSysId: $scope.c.data.scriptIncludeSysId,
-    functionName: $scope.c.data.functionName
-  }).then(function (response) {
-    $scope.c.data.error = response.data.error || '';
-    $scope.c.showClear = response.data.results && response.data.results.length > 0;
-  });
-};
+  // Triggers a search for Script Include or function usage
+  $scope.c.findUsage = function () {
+    $scope.server.update({
+      scriptIncludeSysId: $scope.c.data.scriptIncludeSysId,
+      functionName: $scope.c.data.functionName
+    }).then(function (response) {
+      $scope.c.data.error = response.data.error || '';
+      $scope.c.showClear = response.data.results && response.data.results.length > 0;
+    });
+  };
 
+  // Exports current results as a CSV file
   $scope.c.exportToCSV = function() {
     if (!$scope.c.data.results || !$scope.c.data.results.length) return;
 
@@ -45,6 +50,7 @@ api.controller = function($scope) {
     document.body.removeChild(link);
   };
 
+  // Clears all input and results
   $scope.c.clearResults = function() {
     $scope.c.data.scriptIncludeSysId = '';
     $scope.c.data.functionName = '';
@@ -53,10 +59,12 @@ api.controller = function($scope) {
     $scope.c.data.error = '';
   };
 
+  // Copies given text to clipboard
   $scope.c.copyText = function(text) {
     navigator.clipboard.writeText(text);
   };
 
+  // Fetches full script content from the server and shows it in a modal
   $scope.c.viewScript = function(row) {
     console.log('ViewScript debug:', row.table, row.sys_id);
     $scope.server.get({
