@@ -1,49 +1,56 @@
 # TG Usage Relationship Objects
 
 ## 📁 Table of Contents
+
 - [📖 Overview](#overview)
 - [📁 Repository Structure](#repository-structure)
   - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
   - [2. Usage Field](#2-usage-field)
+  - [3. Usage Field with Local Storage](#3-usage-field-with-local-storage)
 - [🛠️ Installation Instructions](#installation-instructions)
 - [🚀 Usage Examples](#usage-examples)
 - [🖼️ Screenshots](#screenshots)
 
 ---
 
-## Overview
+## 📖 Overview
 
-**TG Usage Relationship Objects** is a toolkit of two ServiceNow developer tools:
+**TG Usage Relationship Objects** is a toolkit of three ServiceNow developer tools:
 
-- **Script Include and Function Usage**: Track where Script Includes and their methods are used
-- **Usage Field**: Detect field references across scripts using `sys_dictionary` field `sys_id`
+- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.
+- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.
+- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.
 
-These tools help:
+These tools help you:
+
 - Perform fast impact analysis
 - Improve script maintenance and documentation
-- Validate refactor safety
+- Validate safe refactoring
 - Streamline debugging across your ServiceNow instance
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
 ### 1. Script Include and Function Usage
 
 ```
+
 Script Include and Function Usage/
 ├── BackgraundScript/
 │   └── backgraundScriptWithFunctionSearch.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
+
 ```
 
 #### ✅ Features
-- Query by Script Include or specific function
-- Smart function detection using RegExp
+
+- Query by Script Include or a specific method
+- Function detection using RegExp
 - Scans:
   - Business Rules
   - Client Scripts
@@ -52,67 +59,109 @@ Script Include and Function Usage/
   - Scripted REST APIs
   - Flow Designer Flows
   - Scheduled Jobs
-- Grouped view vs tabular view (with toggle)
-- Modal for full script
-- Copy to clipboard
-- CSV Export
+- Toggle between Grouped and Table views
+- Full script preview modal
+- Copy matched lines to clipboard
+- Export results to CSV
+
+---
 
 ### 2. Usage Field
 
 ```
+
 Usage Field/
 ├── BackgraundScript/
 │   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
+
 ```
 
 #### ✅ Features
-- Input a field `sys_id` from `sys_dictionary`
-- Detect script references in key system tables
-- Matches grouped or tabular view (toggle)
-- Highlights matching rows & lines
+
+- Accepts a `sys_id` from the `sys_dictionary` table
+- Detects references in major scripting tables
+- Grouped view and flat table view toggle
+- Displays line number and matched lines
 - Full script modal
-- Export to CSV & copy
+- CSV export and inline copy support
 
 ---
 
-## Installation Instructions
+### 3. Usage Field with Local Storage
 
-1. Upload widget files via the Service Portal widget editor
-2. Use background script under `System Definition > Scripts - Background`
-3. Add widget to a Service Portal page
+[🔗 View Source Code ›](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage)
+
+```
+
+Usage Field with Local Storage/
+├── BackgraundScript/
+│   └── backgraundScript.js
+├── Widget/
+│   ├── template.html
+│   ├── script.js
+│   ├── client\_script.js
+│   └── css.scss
+
+```
+
+#### ✅ Features
+
+- All capabilities of the **Usage Field** widget
+- **Local Storage Tracker**:
+  - Automatically saves the last 10 `sys_id` lookups to local storage
+  - Displays saved history with timestamp
+  - One-click to re-populate a previous field
+  - Clear history or delete individual entries
+- History panel is hidden by default but included in the code for future enablement
 
 ---
 
-## Usage Examples
+## 🛠️ Installation Instructions
+
+1. Upload widget files using the Service Portal Widget Editor
+2. Add the widget to a Service Portal page
+
+---
+
+## 🚀 Usage Examples
 
 ### 🔍 Script Include + Function
-- Provide a Script Include `sys_id`
-- Optionally specify a method like `addPDFConversionNote`
-- See where this function is called in code
 
-### 📘 Field Usage
-- Provide a field’s `sys_id` from `sys_dictionary`
-- View where it appears in scripts or config
+- Enter the Script Include `sys_id`
+- Optionally enter a specific function (e.g., `addPDFConversionNote`)
+- Click **Find Usage** to locate where it's called in the system
+
+### 📘 Usage Field
+
+- Enter the `sys_id` of a field from the `sys_dictionary` table
+- Review all script references where this field appears
+
+### 💾 Usage Field with Local Storage
+
+- Same as Usage Field, but each lookup is automatically stored in browser localStorage
+- Recent lookups (max 10) are displayed with date and clickable links
+- Track your analysis across sessions
 
 ---
 
-## Screenshots
+## 🖼️ Screenshots
 
-### Script Include and Function Usage – Group View
+### Script Include and Function Usage – Group View  
 ![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
 
-### Script Include and Function Usage – Table View
+### Script Include and Function Usage – Table View  
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
 
-### Usage Field – Group View
+### Usage Field – Group View  
 ![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Group%20Mode.png)
 
-### Usage Field – Table View
+### Usage Field – Table View  
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
 
 ---
+
