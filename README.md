@@ -1,13 +1,14 @@
 # TG Usage Relationship Objects
 
 ## 📑 Table of Contents
-- [Overview](#-overview)
-- [Repository Structure](#-repository-structure)
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
   - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
   - [2. Usage Field](#2-usage-field)
-- [Installation Instructions](#-installation-instructions)
-- [Usage Examples](#-usage-examples)
+- [Installation Instructions](#installation-instructions)
+- [Usage Examples](#usage-examples)
 - [Screenshots](#screenshots)
+
 
 ---
 
@@ -104,13 +105,15 @@ Usage Field/
 ## 🖼️ Screenshots
 
 ### Script Include and Function Usage – Group View
-![Script Include – Group](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png?raw=true)
 
 ### Script Include and Function Usage – Table View
-![Script Include – Table](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png?raw=true)
 
 ### Usage Field – Group View
-![Usage Field – Group](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Usage%20Field%20Group%20Mode.png)
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Usage%20Field%20Group%20Mode.png?raw=true)
 
 ### Usage Field – Table View
-![Usage Field – Table](https://raw.githubusercontent.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/main/Images/Usage%20Field%20Table%20Mode.png)
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Usage%20Field%20Table%20Mode.png?raw=true)
+
+---
