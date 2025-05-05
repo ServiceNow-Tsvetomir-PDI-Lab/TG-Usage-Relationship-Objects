@@ -1,13 +1,13 @@
 # TG Usage Relationship Objects
 
 ## 📑 Table of Contents
-- [Overview](#%F0%9F%A7%A0-overview)
-- [Repository Structure](#-repository-structure)
-  - [Script Include and Function Usage](#1-script-include-and-function-usage)
-  - [Usage Field](#2-usage-field)
-- [🛠️ Installation Instructions](#-installation-instructions)
-- [🚀 Usage Examples](#-usage-examples)
-- [🖼️ Screenshots](#-screenshots)
+- [📖 Overview](#overview)
+- [📁 Repository Structure](#repository-structure)
+  - [1. Script Include and Function Usage](#1-script-include-and-function-usage)
+  - [2. Usage Field](#2-usage-field)
+- [🛠️ Installation Instructions](#installation-instructions)
+- [🚀 Usage Examples](#usage-examples)
+- [🖼️ Screenshots](#screenshots)
 
 ---
 
