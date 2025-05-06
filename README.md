@@ -121,11 +121,7 @@ Usage Field with Local Storage/
   - One-click re-population of a previous lookup  
   - Delete individual entries or clear entire history  
 
-<https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage>
-
-**Source code & documentation:**  
-[Script Include & Function Usage with Local Storage](./Script-Include-Function-Usage-with-LocalStorage/)
-
+[Usage Field with Local Storage on GitHub]([https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Script%20Include%20and%20Function%20Usage%20with%20localStorage](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage))
 
 ---
 
@@ -154,8 +150,6 @@ Script Include & Function Usage with Local Storage/
 - Seamless integration: clicking a history entry loads values into the search form  
 
 [Script Include & Function Usage with Local Storage on GitHub](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Script%20Include%20and%20Function%20Usage%20with%20localStorage)
-**Source code & documentation:**  
-[Script Include & Function Usage with Local Storage](./Script-Include-Function-Usage-with-LocalStorage/)
 
 ---
 
