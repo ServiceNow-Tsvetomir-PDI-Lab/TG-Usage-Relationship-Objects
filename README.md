@@ -122,6 +122,8 @@ Usage Field with Local Storage/
   - Delete individual entries or clear entire history  
 
 <https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage>
+
+**Source code & documentation:**  
 [Script Include & Function Usage with Local Storage](./Script-Include-Function-Usage-with-LocalStorage/)
 
 
