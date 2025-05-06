@@ -5,7 +5,7 @@ api.controller = function($scope) {
   $scope.c.data.fieldSysId = '';
   $scope.c.data.inputValue = '';
 
-  var STORAGE_KEY = 'simpleInputList';
+  var STORAGE_KEY = 'simpleInputListTGUsageFinder';
 
   // Local Storage Tracker logic
   $scope.c.saveInput = function() {
