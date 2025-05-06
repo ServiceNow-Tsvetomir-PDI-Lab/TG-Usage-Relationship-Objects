@@ -35,6 +35,17 @@
   </button>
   <button class="btn btn-danger mt-3" ng-if="c.data.results.length" ng-click="c.clearResults()">Clear</button>
 
+  <!-- View mode toggle switch -->
+  <div class="form-check mt-3" ng-if="c.data.results.length">
+    <label class="form-check-label me-2" for="toggleViewSwitch">
+      {{ c.data.viewMode === 'group' ? 'Grouped View' : 'Table View' }}
+    </label>
+    <label class="switch">
+      <input type="checkbox" id="toggleViewSwitch" ng-model="c.data.viewModeSwitch" ng-change="c.toggleViewFromSwitch()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
   <!-- Local Storage Tracker Section -->
   <div class="mt-5">
     <h4>Local Storage Tracker</h4>
