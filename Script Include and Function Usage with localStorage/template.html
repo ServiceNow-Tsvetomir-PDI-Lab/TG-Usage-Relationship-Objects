@@ -1,0 +1,171 @@
+<div class="form-group">
+  <h3>Script Include & Function Usage Finder</h3>
+
+  <!-- Informational alert explaining the purpose of the tool -->
+  <div class="alert alert-info mt-3">
+    <strong>What is this?</strong><br>
+    This tool allows you to trace where a Script Include or a specific function inside it is used across your instance. Ideal for debugging, cleanup, and refactoring tasks.
+  </div>
+
+  <!-- User guidance alert with steps for how to use the tool -->
+  <div class="alert alert-secondary">
+    <strong>How to Use:</strong>
+    <ol class="mt-2 mb-0 ps-3">
+      <li>Enter the <code>sys_id</code> of a Script Include from the <code>sys_script_include</code> table.</li>
+      <li>Optionally, provide a function name to narrow the search (e.g., <code>addPDFConversionNote</code>).</li>
+      <li>Click <strong>Find Usage</strong> to locate references.</li>
+      <li>Toggle between <strong>Grouped</strong> and <strong>Table</strong> views.</li>
+    </ol>
+  </div>
+
+  <!-- Additional tips alert for advanced usage -->
+  <div class="alert alert-warning">
+    <strong>Tips:</strong><br>
+    - If function name is specified, the tool validates it exists before searching.<br>
+    - Use the 🔍 icon to preview the full script.<br>
+    - Export the results or copy snippets directly from the UI.
+  </div>
+
+  <!-- Script Include sys_id input -->
+  <label for="scriptIncludeSysId">Script Include Sys ID</label>
+  <input type="text" id="scriptIncludeSysId" ng-model="c.data.scriptIncludeSysId" class="form-control" placeholder="Enter sys_id">
+</div>
+
+<!-- Optional function name input -->
+<div class="form-group">
+  <label for="functionName">Function Name (optional)</label>
+  <input type="text" id="functionName" ng-model="c.data.functionName" class="form-control" placeholder="Leave empty to search by Script Include only">
+</div>
+
+<!-- Trigger search and control actions -->
+<button class="btn btn-primary" ng-click="c.findUsage()">Find Usage</button>
+<button class="btn btn-secondary ms-2" ng-if="c.showClear" ng-click="c.clearResults()">Clear</button>
+<button class="btn btn-outline-secondary mt-3 me-2" ng-if="c.data.results && c.data.results.length" ng-click="c.exportToCSV()">
+  Export to CSV
+</button>
+<button class="btn btn-danger mt-3" ng-if="c.data.results && c.data.results.length" ng-click="c.clearResults()">Clear</button>
+
+<!-- Local Storage Tracker Section -->
+<div class="mt-5">
+  <h4>Local Storage Tracker</h4>
+
+  <!-- Input + Save button -->
+  <div class="form-group">
+    <!-- <input type="text" class="form-control mb-2" ng-model="c.data.inputValue" placeholder="Enter something..."> -->
+    <input type="text" class="form-control mb-2" ng-model="c.data.fieldSysId" placeholder="Enter field sys_id">
+    <input type="text" class="form-control mb-2" ng-model="c.data.fieldFunctionName" placeholder="Enter field 2 function name">
+    <button class="btn btn-primary me-2" ng-click="c.saveInput()">Save</button>
+    <button class="btn btn-outline-danger" ng-click="c.clearHistory()" ng-if="c.data.entries.length">Clear History</button>
+  </div>
+
+  <!-- Display list -->
+  <div class="mt-4" ng-if="c.data.entries.length">
+    <h5>Saved Entries:</h5>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-start"
+          ng-repeat="item in c.data.entries track by $index">
+        <div>
+            <a href="#"
+           ng-click="
+             c.data.scriptIncludeSysId = item.fieldSysId;
+             c.data.functionName       = item.fieldFunctionName;
+           ">
+          {{ item.fieldSysId }} <em>–</em> {{ item.fieldFunctionName }}
+        </a><br>
+          <small class="text-muted">{{ item.date }}</small>
+        </div>
+        <button class="btn btn-sm btn-secondary" ng-click="c.deleteEntry($index)">🗑️</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- View mode toggle switch -->
+<div class="form-check mt-3" ng-if="c.data.results.length">
+  <label class="form-check-label me-2" for="toggleViewSwitch">
+    {{ c.data.viewMode === 'group' ? 'Grouped View' : 'Table View' }}
+  </label>
+  <label class="switch">
+    <input type="checkbox" id="toggleViewSwitch" ng-model="c.data.viewModeSwitch" ng-change="c.toggleViewFromSwitch()">
+    <span class="slider"></span>
+  </label>
+</div>
+
+<!-- Error display section -->
+<div class="alert alert-danger mt-3" ng-if="c.data.error">
+  {{ c.data.error }}
+</div>
+
+<hr>
+
+<!-- Display results when available -->
+<div ng-if="c.data.results.length">
+  <h5>Results for: {{ c.data.scriptIncludeName }}</h5>
+
+  <!-- Grouped result view -->
+  <div ng-if="c.data.viewMode === 'group'">
+    <div ng-repeat="(type, group) in c.groupedResults">
+      <h5 class="mt-4">{{ type }}</h5>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="r in group">
+          <strong><a href="{{ r.url }}" target="_blank">{{ r.name }}</a></strong><br>
+          <small>
+            <strong>Table:</strong> {{ r.table }}<br>
+            <strong>sys_id:</strong> {{ r.sys_id }}<br>
+            <strong>Match Count:</strong> {{ r.matchCount }}<br>
+            <strong>Match Row:</strong> {{ r.matchRow }}
+          </small>
+          <pre class="mt-2">{{ r.match }}</pre>
+          <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋 Copy</button>
+          <button class="btn btn-sm btn-outline-info me-1" ng-click="c.viewScript(r)">🔍 View Full Script</button>
+          <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Table result view -->
+  <div ng-if="c.data.viewMode === 'table'">
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Match Count</th>
+          <th>Match Row</th>
+          <th>Match Line</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="r in c.data.results">
+          <td>{{ r.type }}</td>
+          <td><a href="{{ r.url }}" target="_blank">{{ r.name }}</a></td>
+          <td>{{ r.matchCount }}</td>
+          <td>{{ r.matchRow }}</td>
+          <td><pre>{{ r.match }}</pre></td>
+          <td>
+            <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋</button>
+            <button class="btn btn-sm btn-outline-info me-1" ng-click="c.viewScript(r)">🔍</button>
+            <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Full Script Modal -->
+<div class="modal fade" id="scriptModal" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Full Script</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <pre>{{ c.fullScript }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
