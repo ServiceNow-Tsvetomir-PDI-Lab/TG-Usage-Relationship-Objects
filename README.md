@@ -7,6 +7,7 @@
   - [1. Script Include and Function Usage](#script-include-and-function-usage)
   - [2. Usage Field](#usage-field)
   - [3. Usage Field with Local Storage](#usage-field-with-local-storage)
+  - [4. Script Include & Function Usage with Local Storage](#script-include--function-usage-with-local-storage)
 - [🛠️ Installation Instructions](#installation-instructions)
 - [🚀 Usage Examples](#usage-examples)
 - [🖼️ Screenshots](#screenshots)
@@ -16,18 +17,19 @@
 <a id="overview"></a>
 ## 📖 Overview
 
-**TG Usage Relationship Objects** is a toolkit of three ServiceNow developer tools:
+**TG Usage Relationship Objects** is a toolkit of four ServiceNow developer tools:
 
-- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.
-- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.
-- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.
+- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.  
+- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.  
+- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.  
+- **Script Include & Function Usage with Local Storage** – Combines Script Include usage search with a local-storage history tracker.
 
 These tools help you:
 
-- Perform fast impact analysis
-- Improve script maintenance and documentation
-- Validate safe refactoring
-- Streamline debugging across your ServiceNow instance
+- Perform fast impact analysis  
+- Improve script maintenance and documentation  
+- Validate safe refactoring  
+- Streamline debugging across your ServiceNow instance  
 
 ---
 
@@ -45,7 +47,7 @@ Script Include and Function Usage/
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
 
 ```
@@ -55,13 +57,13 @@ Script Include and Function Usage/
 - Query by Script Include or a specific method  
 - Function detection using RegExp  
 - Scans:
-  - Business Rules
-  - Client Scripts
-  - Script Includes
-  - UI Actions
-  - Scripted REST APIs
-  - Flow Designer Flows
-  - Scheduled Jobs
+  - Business Rules  
+  - Client Scripts  
+  - Script Includes  
+  - UI Actions  
+  - Scripted REST APIs  
+  - Flow Designer Flows  
+  - Scheduled Jobs  
 - Toggle between Grouped and Table views  
 - Full script preview modal  
 - Copy matched lines to clipboard  
@@ -80,7 +82,7 @@ Usage Field/
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
 
 ```
@@ -119,8 +121,35 @@ Usage Field with Local Storage/
   - One-click re-population of a previous lookup  
   - Delete individual entries or clear entire history  
 
-**View source code:**  
 <https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage>
+
+---
+
+<a id="script-include--function-usage-with-local-storage"></a>
+### 4. Script Include & Function Usage with Local Storage
+
+```
+
+Script Include & Function Usage with Local Storage/
+├── Widget/
+│   ├── template.html
+│   ├── script.js
+│   ├── client_script.js
+│   └── css.scss
+
+```
+
+#### ✅ Features
+
+- All functionality of **Script Include and Function Usage**  
+- **Local Storage Tracker**:
+  - Saves last 10 lookups (Script Include ID + Function Name)  
+  - Displays lookup history with timestamps  
+  - One-click to refill both Script Include and Function inputs  
+  - Delete individual entries or clear entire history  
+- Seamless integration: clicking a history entry loads values into the search form  
+
+<https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Script%20Include%20and%20Function%20Usage%20with%20localStorage>
 
 ---
 
@@ -152,6 +181,12 @@ Usage Field with Local Storage/
 1. Same as **Usage Field**, but each lookup is saved automatically.  
 2. Recent lookups (up to 10) are shown with date and time.  
 3. Click a saved entry to re-run the lookup.  
+
+### 🗂 Script Include & Function with Local Storage
+
+1. Enter the Script Include `sys_id` and optional Function Name.  
+2. Click **Find Usage**; the lookup is also saved.  
+3. View or click history entries to reload form values.  
 
 ---
 
