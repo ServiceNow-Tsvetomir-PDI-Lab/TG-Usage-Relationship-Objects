@@ -173,9 +173,3 @@ Script Include & Function Usage with Local Storage/
 
 ### Usage Field – Table View  
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
-
-### Usage Field with Local Storage – History Panel  
-![History Panel](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20with%20LocalStorage.png)
-
-### Script Include & Function with Local Storage – Combined View  
-![Combined View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20with%20LocalStorage.png)
