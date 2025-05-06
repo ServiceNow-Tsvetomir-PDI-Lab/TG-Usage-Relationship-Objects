@@ -17,24 +17,27 @@
 <a id="overview"></a>
 ## 📖 Overview
 
-**TG Usage Relationship Objects** is a toolkit of four ServiceNow developer tools:
+**TG Usage Relationship Objects** is a comprehensive suite of four specialized ServiceNow developer tools designed to simplify code analysis and maintenance:
 
-- **Script Include and Function Usage** – Identify where a Script Include or a specific function is used.  
-- **Usage Field** – Trace where a specific dictionary field (`sys_id`) appears in scripts and configuration.  
-- **Usage Field with Local Storage** – Enhanced version of the Usage Field tool that adds local tracking for recent field lookups.  
-- **Script Include & Function Usage with Local Storage** – Combines Script Include usage search with a local-storage history tracker.
+1. **Script Include and Function Usage** – Instantly discover every ServiceNow record or script that invokes a specific Script Include or method, helping you map code dependencies quickly.  
+2. **Usage Field** – Identify all instances where a given dictionary field (`sys_id` from the `sys_dictionary` table) is referenced, offering insight into configuration and script usage across your instance.  
+3. **Usage Field with Local Storage** – Extends the Usage Field widget by remembering your recent field lookups locally in the browser, so you can revisit past searches without losing context.  
+4. **Script Include & Function Usage with Local Storage** – Combines the power of Script Include usage tracing with a built-in local history tracker, letting you switch between analysis and saved lookups seamlessly.
 
-These tools help you:
+These tools empower both administrators and developers to:
+- Perform fast impact and dependency analysis before making changes  
+- Improve code quality and documentation by understanding script relationships  
+- Ensure safe refactoring by uncovering hidden dependencies  
+- Streamline troubleshooting by locating relevant script segments rapidly
 
-- Perform fast impact analysis  
-- Improve script maintenance and documentation  
-- Validate safe refactoring  
-- Streamline debugging across your ServiceNow instance  
+Whether you’re cleaning up old business rules, auditing field usage, or validating a migration, this toolkit accelerates your workflow and reduces risk.
 
 ---
 
 <a id="repository-structure"></a>
 ## 📁 Repository Structure
+
+The project is organized into four top-level directories, one per widget plus shared background scripts for each:
 
 <a id="script-include-and-function-usage"></a>
 ### 1. Script Include and Function Usage
@@ -42,34 +45,17 @@ These tools help you:
 ```
 
 Script Include and Function Usage/
-├── BackgraundScript/
+├── BackgroundScript/
 │   └── backgraundScriptWithFunctionSearch.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
 
 ```
 
-#### ✅ Features
-
-- Query by Script Include or a specific method  
-- Function detection using RegExp  
-- Scans:
-  - Business Rules  
-  - Client Scripts  
-  - Script Includes  
-  - UI Actions  
-  - Scripted REST APIs  
-  - Flow Designer Flows  
-  - Scheduled Jobs  
-- Toggle between Grouped and Table views  
-- Full script preview modal  
-- Copy matched lines to clipboard  
-- Export results to CSV  
-
----
+**Description:** This widget provides a clear interface to enter a Script Include `sys_id` and optional function name, then scans Business Rules, Client Scripts, UI Actions, and more. Results are grouped by record type or displayed in a sortable table. Full script lines are highlighted with match counts and easy copy/export options.
 
 <a id="usage-field"></a>
 ### 2. Usage Field
@@ -77,26 +63,17 @@ Script Include and Function Usage/
 ```
 
 Usage Field/
-├── BackgraundScript/
+├── BackgroundScript/
 │   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
 
 ```
 
-#### ✅ Features
-
-- Accepts a `sys_id` from the `sys_dictionary` table  
-- Detects references in major scripting tables  
-- Toggle between Grouped and Table views  
-- Displays line numbers and matched lines  
-- Full script preview modal  
-- Export results to CSV & copy to clipboard  
-
----
+**Description:** Focused on dictionary fields, this widget lets you paste a `sys_id` from `sys_dictionary` to locate every script or configuration element referencing that field. Ideal for impact analysis before deleting or modifying fields.
 
 <a id="usage-field-with-local-storage"></a>
 ### 3. Usage Field with Local Storage
@@ -104,26 +81,17 @@ Usage Field/
 ```
 
 Usage Field with Local Storage/
+├── BackgroundScript/
+│   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
 
 ```
 
-#### ✅ Features
-
-- All capabilities of the **Usage Field** widget  
-- **Local Storage Tracker**:
-  - Automatically saves the last 10 `sys_id` lookups to browser localStorage  
-  - Displays saved history with timestamps  
-  - One-click re-population of a previous lookup  
-  - Delete individual entries or clear entire history  
-
-[Usage Field with Local Storage on GitHub](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Usage%20Field%20with%20localStorage)
-
----
+**Description:** Builds on the Usage Field widget with a **Local Storage Tracker**. Each time you perform a lookup, the `sys_id` and timestamp are saved in the browser up to a limit of 10 entries. Quickly re-run past searches or clear history without retyping.
 
 <a id="script-include--function-usage-with-local-storage"></a>
 ### 4. Script Include & Function Usage with Local Storage
@@ -131,34 +99,30 @@ Usage Field with Local Storage/
 ```
 
 Script Include & Function Usage with Local Storage/
+├── BackgroundScript/
+│   └── backgraundScriptWithFunctionSearch.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client_script.js
+│   ├── client\_script.js
 │   └── css.scss
 
 ```
 
-#### ✅ Features
-
-- All functionality of **Script Include and Function Usage**  
-- **Local Storage Tracker**:
-  - Saves last 10 lookups (Script Include ID + Function Name)  
-  - Displays lookup history with timestamps  
-  - One-click to refill both Script Include and Function inputs  
-  - Delete individual entries or clear entire history  
-- Seamless integration: clicking a history entry loads values into the search form  
-
-[Script Include & Function Usage with Local Storage on GitHub](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/tree/main/Script%20Include%20and%20Function%20Usage%20with%20localStorage)
+**Description:** Integrates the Script Include & Function Usage analysis with a built-in local history panel. Save combinations of Script Include ID and method names automatically. Click a saved entry to populate the search form and rerun the analysis in one click.
 
 ---
 
 <a id="installation-instructions"></a>
 ## 🛠️ Installation Instructions
 
-1. Upload widget files using the Service Portal Widget Editor.  
-2. Execute the corresponding Background Script under **System Definition > Scripts - Background**.  
-3. Add the widget to a Service Portal page.  
+1. **Clone or download** this repository to your local system or directly import via GitHub.  
+2. **Upload Background Scripts:** Navigate to **System Definition > Scripts - Background** in your ServiceNow instance and paste the contents of the respective `backgraundScript*.js` files. Run them once to index any server-side logic if necessary.  
+3. **Create Widgets:** Open **Service Portal > Widgets**, create new widgets matching each directory name, and paste the `template.html`, `client_script.js`, `script.js`, and `css.scss` into the appropriate tabs.  
+4. **Add to Page:** Use the Service Portal Page Designer to drag-and-drop the new widget(s) onto your desired page.  
+5. **Configure:** For local storage widgets, no additional setup is needed. Ensure users have permission to run the background scripts if your instance uses scoped apps.
+
+**Note:** Widgets are compatible with both Classic and Now Experience portals; ensure Bootstrap CSS is available for styling.
 
 ---
 
@@ -166,27 +130,32 @@ Script Include & Function Usage with Local Storage/
 ## 🚀 Usage Examples
 
 ### 🔍 Script Include + Function
-
-1. Enter the Script Include `sys_id`.  
-2. Optionally specify a method (e.g., `addPDFConversionNote`).  
-3. Click **Find Usage** to locate references.  
+1. Open the “Script Include and Function Usage” widget in your portal.  
+2. Enter or paste the Script Include `sys_id`. Optionally enter a method name.  
+3. Click **Find Usage**.  
+4. View results grouped by record type, expand to see matching lines, or switch to Table View for sortable columns.  
+5. Copy snippets or export all results to CSV for reporting.
 
 ### 📘 Usage Field
-
-1. Enter a field `sys_id` from the `sys_dictionary` table.  
-2. Click **Find Usage** to see where it appears in scripts.  
+1. Open the “Usage Field” widget.  
+2. Enter a dictionary field `sys_id` from **System Definition > Dictionary**.  
+3. Click **Find Usage**.  
+4. Review every script or UI element referencing that field.  
+5. Use the **Clear** button to reset for a new lookup.
 
 ### 💾 Usage Field with Local Storage
-
-1. Same as **Usage Field**, but each lookup is saved automatically.  
-2. Recent lookups (up to 10) are shown with date and time.  
-3. Click a saved entry to re-run the lookup.  
+1. Open the enhanced “Usage Field with Local Storage” widget.  
+2. Perform your lookup as above.  
+3. Notice the history panel appear below, listing previous `sys_id`s with timestamps.  
+4. Click a history entry to reload that `sys_id` and rerun the search automatically.  
+5. Delete entries individually or clear all history.
 
 ### 🗂 Script Include & Function with Local Storage
-
-1. Enter the Script Include `sys_id` and optional Function Name.  
-2. Click **Find Usage**; the lookup is also saved.  
-3. View or click history entries to reload form values.  
+1. Open the combined widget.  
+2. Enter the Script Include `sys_id` and optional Function Name.  
+3. Click **Find Usage**.  
+4. Observe that both inputs are saved in the history panel below.  
+5. Click any past lookup to populate both fields and rerun analysis instantly.
 
 ---
 
@@ -204,4 +173,9 @@ Script Include & Function Usage with Local Storage/
 
 ### Usage Field – Table View  
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
-```
+
+### Usage Field with Local Storage – History Panel  
+![History Panel](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20with%20LocalStorage.png)
+
+### Script Include & Function with Local Storage – Combined View  
+![Combined View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20with%20LocalStorage.png)
