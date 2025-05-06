@@ -81,8 +81,6 @@ Usage Field/
 ```
 
 Usage Field with Local Storage/
-├── BackgroundScript/
-│   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
@@ -99,8 +97,6 @@ Usage Field with Local Storage/
 ```
 
 Script Include & Function Usage with Local Storage/
-├── BackgroundScript/
-│   └── backgraundScriptWithFunctionSearch.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
