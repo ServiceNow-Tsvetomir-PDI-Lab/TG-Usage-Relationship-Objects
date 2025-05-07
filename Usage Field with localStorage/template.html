@@ -34,7 +34,7 @@
     Export to CSV
   </button>
   <button class="btn btn-danger mt-3" ng-if="c.data.results.length" ng-click="c.clearResults()">Clear</button>
-
+  
   <!-- View mode toggle switch -->
   <div class="form-check mt-3" ng-if="c.data.results.length">
     <label class="form-check-label me-2" for="toggleViewSwitch">
@@ -78,7 +78,7 @@
           <strong><a href="{{ r.url }}" target="_blank">{{ r.name }}</a></strong><br>
           <small>
             <strong>Table:</strong> {{ r.table }}<br>
-            <strong>sys_id:</strong> {{ r.sys_id }}<br>
+            <!-- <strong>sys_id:</strong> {{ r.sys_id }}<br> -->
             <strong>Match Count:</strong> {{ r.matchCount }}<br>
             <strong>Match Row:</strong> {{ r.matchRow }}
           </small>
@@ -97,7 +97,16 @@
     <table class="table table-striped mt-3">
       <thead>
         <tr>
-          <th>Type</th><th>Name</th><th>Table</th><th>sys_id</th><th>Match Count</th><th>Match Row</th><th>Match Line(s)</th><th>Link</th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Table</th>
+          <!-- <th>sys_id</th> -->
+          <th>Match Count</th>
+          <th>Match Row</th>
+          <th>Match Line(s)</th>
+          <!--
+          <th>Action</th>
+					-->
         </tr>
       </thead>
       <tbody>
@@ -105,16 +114,22 @@
           <td>{{ r.type }}</td>
           <td><a href="{{ r.url }}" target="_blank">{{ r.name }}</a></td>
           <td>{{ r.table }}</td>
-          <td>{{ r.sys_id }}</td>
+         <!-- <td>{{ r.sys_id }}</td> -->
           <td>{{ r.matchCount }}</td>
           <td>{{ r.matchRow }}</td>
           <td>
             <pre>{{ r.match }}</pre>
             <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋 Copy</button>
             <button class="btn btn-sm btn-outline-info" ng-click="c.viewScript(r)">🔍 View Full Script</button>
+            <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
           </td>
-          <td><a href="{{ r.url }}" target="_blank">Open</a></td>
-        </tr>
+          <!--
+          <td>
+            <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋</button>
+            <button class="btn btn-sm btn-outline-info me-1" ng-click="c.viewScript(r)">🔍</button>
+            <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
+          </td>
+					-->
       </tbody>
     </table>
   </div>
