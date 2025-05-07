@@ -115,8 +115,7 @@ Script Include & Function Usage with Local Storage/
 1. **Clone or download** this repository to your local system.  
 2. **Upload Background Scripts:** Navigate to **System Definition > Scripts - Background** in your ServiceNow instance and paste the contents of the respective `backgraundScript*.js` files. Run them once to index any server-side logic if necessary. 
 3. **Create Widgets:** Open **Service Portal > Widgets**, create new widgets matching each directory name, and paste the `template.html`, `client_script.js`, `script.js`, and `css.scss` into the appropriate tabs.  
-4. **Add to Page:** Use the Service Portal Page Designer to drag-and-drop the new widget(s) onto your desired page.  
-5. **Configure:** For local storage widgets, no additional setup is needed. Ensure users have permission to run the background scripts if your instance uses scoped apps.
+4. **Add to Page:** Use the Service Portal Page Designer to drag-and-drop the new widget(s) onto your desired page.
 
 ---
 
