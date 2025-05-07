@@ -158,14 +158,32 @@ Script Include & Function Usage with Local Storage/
 <a id="screenshots"></a>
 ## 🖼️ Screenshots
 
-### Script Include and Function Usage – Group View  
-![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
+### Usage Field with localStorage 
+![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Field%20Usage%20Finder%20localStorage.png)
 
-### Script Include and Function Usage – Table View  
-![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
+### Usage Field with localStorage – Group View  
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Field%20Usage%20Finder%20localStorage%20Group.png)
+
+### Usage Field with localStorage – Table View
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Field%20Usage%20Finder%20localStorage%20Table.png)
 
 ### Usage Field – Group View  
 ![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Group%20Mode.png)
 
 ### Usage Field – Table View  
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
+
+### Script Include and Function Usage with localStorage  
+![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20localStorage.png)
+
+### Script Include and Function Usage with localStorage – Group View  
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20localStorage%20Group.png)
+
+### Script Include and Function Usage with localStorage – Table View  
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20localStorage%20Table.png)
+
+### Script Include and Function Usage – Group View  
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
+
+### Script Include and Function Usage – Table View  
+![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
