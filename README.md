@@ -118,8 +118,6 @@ Script Include & Function Usage with Local Storage/
 4. **Add to Page:** Use the Service Portal Page Designer to drag-and-drop the new widget(s) onto your desired page.  
 5. **Configure:** For local storage widgets, no additional setup is needed. Ensure users have permission to run the background scripts if your instance uses scoped apps.
 
-**Note:** Widgets are compatible with both Classic and Now Experience portals; ensure Bootstrap CSS is available for styling.
-
 ---
 
 <a id="usage-examples"></a>
