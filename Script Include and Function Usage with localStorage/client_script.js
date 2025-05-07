@@ -22,7 +22,9 @@ api.controller = function($scope) {
       fieldFunctionName: c.data.fieldFunctionName,
       date:              new Date().toLocaleString()
     });
-    if (list.length > 10) list = list.slice(0, 10);
+    if (list.length > 10) {
+    list = list.slice(0, 10);
+  }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     // clear tracker inputs (but keep the search inputs)
     c.data.fieldSysId = '';
