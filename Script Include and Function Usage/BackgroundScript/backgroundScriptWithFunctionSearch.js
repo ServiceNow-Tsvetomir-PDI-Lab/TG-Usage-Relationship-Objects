@@ -1,12 +1,12 @@
 (function () {
-  var scriptIncludeSysId = 'bd2b0a72830d6210e1dca4d0deaad392'; // required
-  var functionName = ''; // optional – leave '' to search by Script Include only
+  var scriptIncludeSysId = ''; // required
+  var functionName = ''; // optional function name – leave '' to search by Script Include only
 
   var scriptIncludeName = '';
   var scriptIncludeBody = '';
   var results = [];
 
-  // Step 1: Get Script Include record
+  // Get Script Include record
   var siGr = new GlideRecord('sys_script_include');
   if (!siGr.get(scriptIncludeSysId)) {
     gs.error('Script Include not found: ' + scriptIncludeSysId);
