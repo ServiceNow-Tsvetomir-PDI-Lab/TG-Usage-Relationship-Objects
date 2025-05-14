@@ -59,8 +59,8 @@
       { table: 'sys_script_include', field: 'script', type: 'Script Include' },
       { table: 'sys_script_client', field: 'script', type: 'Client Script' },
       { table: 'sys_ui_action', field: 'script', type: 'UI Action' },
-      { table: 'sys_flow_context', field: 'flow', type: 'Flow Designer Flow' },
-      { table: 'catalog_script_client', field: 'script', type: 'Catalog Client Script' },
+      //{ table: 'sys_flow_context', field: 'flow', type: 'Flow Designer Flow' },
+      //{ table: 'catalog_script_client', field: 'script', type: 'Catalog Client Script' },
       { table: 'sys_ws_operation', field: 'operation_script', type: 'Scripted REST API Operation' },
       { table: 'sysauto_script', field: 'script', type: 'Scheduled Script Execution' }
     ];
