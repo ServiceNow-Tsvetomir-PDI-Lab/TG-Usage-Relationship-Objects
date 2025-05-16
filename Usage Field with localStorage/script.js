@@ -1,97 +1,146 @@
 (function() {
-
-  // If the client is requesting full script view, handle here first
+  // Handle request to retrieve script content from a specified record
   if (input && input.action === 'getScript') {
     var table = input.table;
     var sys_id = input.sys_id;
-
     var record = new GlideRecord(table);
     if (record.get(sys_id)) {
-      var possibleFields = ['script', 'operation_script', 'flow', 'definition', 'xml'];
-      for (var i = 0; i < possibleFields.length; i++) {
-        var field = possibleFields[i];
+      var fieldsToTry = ['script', 'operation_script', 'flow', 'definition', 'xml'];
+      for (var i = 0; i < fieldsToTry.length; i++) {
+        var field = fieldsToTry[i];
         if (record.isValidField(field)) {
-          var value = record.getValue(field);
-          if (value) {
-            data.script = value;
+          var content = record.getValue(field);
+          if (content) {
+            data.script = content;
             return;
           }
         }
       }
+      // If script fields exist but are empty or unsupported
       data.script = '[Script field exists but is empty or unsupported]';
     } else {
+      // Record not found in the specified table
       data.script = '[Record not found]';
     }
     return;
   }
 
-  // Default execution path - find references to a given field
+  // Handle request to save updated script content into a specified record
+  if (input && input.action === 'saveScript') {
+    var saveRec = new GlideRecord(input.table);
+    if (saveRec.get(input.sys_id)) {
+      var fieldName = input.field || 'script';
+      if (saveRec.isValidField(fieldName)) {
+        saveRec.setValue(fieldName, input.newScript || '');
+        saveRec.update();
+        data.status = 'success';
+      } else {
+        // Provided field name is invalid for the record
+        data.status = 'invalid field';
+      }
+    } else {
+      // Record to update was not found
+      data.status = 'record not found';
+    }
+    return;
+  }
+
+  // Initialize results and error data properties for the main processing flow
   data.results = [];
   data.error = '';
   data.fieldName = '';
 
-  // Validate input
+  // Validate input to ensure a field sys_id is provided
   if (!input || !input.fieldSysId) {
+    data.error = 'No sys_id provided.';
     return;
   }
 
-  var fieldSysId = input.fieldSysId;
+  // Retrieve the dictionary entry for the specified field sys_id
   var dictGr = new GlideRecord('sys_dictionary');
-
-  // Lookup field name by sys_id
-  if (dictGr.get(fieldSysId)) {
-    data.fieldName = dictGr.element.toString();
-  } else {
-    data.error = 'Field not found in sys_dictionary: ' + fieldSysId;
+  if (!dictGr.get(input.fieldSysId)) {
+    data.error = 'Field not found in sys_dictionary';
     return;
   }
 
-  // Tables and fields to scan for usage
-  var tablesToCheck = [
-    { table: 'sys_script', field: 'script', type: 'Business Rule' },
-    { table: 'sys_script_include', field: 'script', type: 'Script Include' },
-    { table: 'sys_script_client', field: 'script', type: 'Client Script' },
-    { table: 'sys_ui_action', field: 'script', type: 'UI Action' },
-   // { table: 'sys_flow_context', field: 'flow', type: 'Flow Designer Flows' },
-   // { table: 'catalog_script_client', field: 'script', type: 'Catalog Client Script' },
-    { table: 'sys_ws_operation', field: 'operation_script', type: 'Scripted REST API Operation Script' },
-    { table: 'sysauto_script', field: 'script', type: 'Scheduled Script Execution' }
+  var fieldName = dictGr.element + '';
+  var fieldTable = dictGr.name + '';
+  data.fieldName = fieldName;
+
+  // Define tables and fields to scan for references to the field
+  var tablesToScan = [
+    { table: 'sys_script', field: 'script', type: 'Business Rule', tableField: 'collection' },
+    { table: 'sys_script_include', field: 'script', type: 'Script Include', tableField: null },
+    { table: 'sys_script_client', field: 'script', type: 'Client Script', tableField: 'table' },
+    { table: 'sys_ui_action', field: 'script', type: 'UI Action', tableField: 'table' },
+    { table: 'sys_flow_context', field: 'flow', type: 'Flow Designer Flow', tableField: null },
+    { table: 'catalog_script_client', field: 'script', type: 'Catalog Client Script', tableField: null },
+    { table: 'sys_ws_operation', field: 'operation_script', type: 'Scripted REST Operation', tableField: null },
+    { table: 'sysauto_script', field: 'script', type: 'Scheduled Script Execution', tableField: null }
   ];
 
-  // Search each table for the field name
-  for (var i = 0; i < tablesToCheck.length; i++) {
-    var info = tablesToCheck[i];
-    var gr = new GlideRecord(info.table);
-    gr.addQuery(info.field, 'CONTAINS', data.fieldName);
+  // Regex pattern to detect GlideRecord variable declarations and their table names
+  var grDeclarePattern = /var\s+(\w+)\s*=\s*new\s+[\w.]+\(["']([a-zA-Z0-9_]+)["']\)/g;
+
+  // Iterate through each table to scan for script references to the field
+  for (var i = 0; i < tablesToScan.length; i++) {
+    var t = tablesToScan[i];
+    var gr = new GlideRecord(t.table);
     gr.query();
 
+    // Process each record's script field to find references to the target field
     while (gr.next()) {
-      var script = gr.getValue(info.field);
+      var script = gr.getValue(t.field);
+      if (!script) continue;
+
+      var lines = script.split(/\r?\n/);
       var matchLines = [];
       var matchRows = [];
+      var matchFound = false;
+      var scriptTable = t.tableField && gr.isValidField(t.tableField) ? gr.getValue(t.tableField) : '';
 
-      // Collect lines and line numbers that contain the field name
-      if (script) {
-        var lines = script.split(/\r?\n/);
-        lines.forEach(function(line, idx) {
-          if (line.toLowerCase().indexOf(data.fieldName.toLowerCase()) !== -1) {
-            matchLines.push(line.trim());
-            matchRows.push(idx + 1);
-          }
-        });
+      // Map variable names to table names based on GlideRecord declarations in the script
+      var variables = {};
+      var declareMatch;
+      while ((declareMatch = grDeclarePattern.exec(script)) !== null) {
+        var varName = declareMatch[1];
+        var tableName = declareMatch[2];
+        variables[varName] = tableName;
       }
 
-      // Push results into the output array
-      data.results.push({
-        type: info.type,
-        table: info.table,
-        name: gr.name ? gr.name.toString() : (gr.sys_name ? gr.sys_name.toString() : gr.getDisplayValue()),
-        sys_id: gr.sys_id.toString(),
-        url: '/nav_to.do?uri=' + info.table + '.do?sys_id=' + gr.sys_id,
-        match: matchLines.join('\n'),
-        matchRow: matchRows.join(', '),
-        matchCount: matchLines.length
-      });
+      // Search each line for direct 'current.fieldName' or variable.fieldName references matching the target table
+      for (var j = 0; j < lines.length; j++) {
+        var line = lines[j];
+
+        if (line.match(new RegExp('\\bcurrent\\.' + fieldName + '\\b')) && scriptTable === fieldTable) {
+          matchLines.push(line.trim());
+          matchRows.push(j + 1);
+          matchFound = true;
+        }
+
+        for (var v in variables) {
+          if (variables[v] === fieldTable && line.match(new RegExp('\\b' + v + '\\.' + fieldName + '\\b'))) {
+            matchLines.push(line.trim());
+            matchRows.push(j + 1);
+            matchFound = true;
+          }
+        }
+      }
+
+      // If any matches found, add detailed info to results array
+      if (matchFound) {
+        data.results.push({
+          type: t.type,
+          table: t.table,
+          scriptTable: scriptTable || 'N/A',
+          name: gr.name ? gr.name + '' : gr.getDisplayValue(),
+          sys_id: gr.sys_id + '',
+          url: '/nav_to.do?uri=' + t.table + '.do?sys_id=' + gr.sys_id,
+          match: matchLines.join('\n'),
+          matchRow: matchRows.join(', '),
+          matchCount: matchLines.length
+        });
+      }
     }
   }
 
