@@ -161,4 +161,8 @@ Usage Field with localStorage/
 
 ## 📸 Screenshots
 
-📌 *Add screenshots/GIFs here of Group View, Edit Modal, and Saved History*
+### Usage Field with localStorage 
+![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/New%20Version%20Usage%20Field.png)
+
+### Usage Field with localStorage – Group View  
+![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/New%20Version%20Usage%20Field%202.png)
