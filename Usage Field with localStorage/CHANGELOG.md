@@ -1,6 +1,31 @@
 # 📦 CHANGELOG
 
-All notable changes to this widget are documented in this file.
+All notable changes to the **Field Usage Finder Widget** will be documented in this file.
+
+---
+
+## [3.0.0] - 2025-05-19
+
+### 🧩 Added
+- 📋 Copy to Clipboard button embedded directly into the input field for better UX.
+- 📊 Accordion-style panels with enhanced structure and new icons (What is this?, How to Use, Tips).
+- 🔄 Button alignment: Export to CSV / Clear buttons repositioned before Refresh.
+- 📜 Reorganized CSS and HTML codebase into clear, labeled sections and sub-sections for maintainability.
+- 📦 Visual improvements for result panels: grouped view now displays in responsive column grid layout.
+- 🧠 All scripts (Client + Server) refactored with extensive comments and section headers.
+- 🧪 Field sys_id entries now display copy time and are managed through enhanced localStorage logic.
+
+### 🛠️ Changed
+- 📦 Fully refactored HTML with grouped sections and accordion panels
+- 📋 Improved modal display and editing logic
+- 🖼️ Improved UI layout with consistent spacing and modernized button styling.
+- 🧱 Input field + Copy ID button now wrapped in a flex row to improve alignment.
+- 🧪 Reworked localStorage logic to store only valid field data
+
+### 🐛 Fixed
+- ✅ Recent Searches now correctly track `sys_id` values and avoid duplicates.
+
+---
 
 ## [2.0.0] - 2025-05-16
 ### Added

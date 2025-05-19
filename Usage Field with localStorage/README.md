@@ -9,6 +9,7 @@ A custom ServiceNow Service Portal widget that allows users to **analyze field u
 - [📦 Features](#-features)
 - [📂 Project Structure](#-project-structure)
 - [🧩 Files Included](#-files-included)
+- [🚀 What's New in v3.0.0](#-whats-new-in-v300)
 - [🚀 What's New in v2.0.0](#-whats-new-in-v200)
 - [🛠️ How to Use](#️-how-to-use)
 - [📌 Requirements](#-requirements)
@@ -46,7 +47,7 @@ A custom ServiceNow Service Portal widget that allows users to **analyze field u
 
 ### ✅ Smart Field Matching (Enhanced)
 - Matches only when field belongs to correct parent table (`collection`, `table`, etc.)
-- Skips false positives like `"GlideCacheManager"` or non-matching variables
+- Skips false positives like "GlideCacheManager" or non-matching variables
 - Regex-based parsing of local GlideRecord instances (e.g. `var gr = new GlideRecord('sys_user')`)
 
 ---
@@ -74,6 +75,23 @@ Usage Field with localStorage/
 | `template.html`    | Markup structure for search input, result rendering, and modals |
 | `script.js`        | Server-side logic for parsing and returning matching scripts |
 | `css.scss`         | Custom styling for loader, modals, lists, toggle, etc. |
+
+---
+
+## 🚀 What's New in v3.0.0
+
+Version 3.0.0 introduces a refreshed design and improved user experience, including:
+
+| Type     | Description |
+|----------|-------------|
+| ✅ Added | Accordion-style help panels ("What is this?", "How to use?", "Tips") |
+| ✅ Added | Button inside input field to copy sys_id (improved UX) |
+| ✅ Added | View panels layout adapted to better responsiveness and spacing |
+| ✅ Added | Code refactor for better structure and section-based navigation |
+| 🎨 Improved | Accordion icons and spacing for mobile and desktop consistency |
+| 🧠 Improved | Visual spacing and input layout inspired by modern Next.js UI |
+| 💡 Refactored | Fully Refactored Template, Client Script, and CSS for clarity and maintainability |
+|  🛠️ **Bug Fixes | Fixed modal issues, field metadata logic, and localStorage integration | 
 
 ---
 
@@ -112,7 +130,15 @@ Usage Field with localStorage/
 
 ## 🔖 Version History
 
-### v2.0.0 (Current)
+### v3.0.0
+- UI redesign inspired by modern design systems (Next.js)
+- Accordion-style contextual help
+- Cleaner and responsive layout
+- New Copy ID logic inside input
+- Improved grouping of scripts and spacing
+- Full code refactor with modular sections and comments
+
+### v2.0.0
 - LocalStorage integration
 - Script editing modal
 - Smart match validation
@@ -161,7 +187,7 @@ Usage Field with localStorage/
 
 ## 📸 Screenshots
 
-### Usage Field with localStorage 
+### Usage Field with localStorage
 ![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/New%20Version%20Usage%20Field.png)
 
 ### Usage Field with localStorage – Group View  
