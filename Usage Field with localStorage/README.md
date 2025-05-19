@@ -187,8 +187,21 @@ Version 3.0.0 introduces a refreshed design and improved user experience, includ
 
 ## 📸 Screenshots
 
-### Usage Field with localStorage
+### v3.0.0
+
+### Usage Field with localStorage [v3.0.0]
+![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/Version%203%20Usage%20Field.png)
+
+### Usage Field with localStorage - Group View [v3.0.0]
+![localStorage Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/Version%203%20Usage%20Field%20Group%20View.png)
+
+### Usage Field with localStorage - Table View [v3.0.0]
+![localStorage Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/Version%203%20Usage%20Field%20Table%20View.png)
+
+### v2.0.0
+
+### Usage Field with localStorage [v2.0.0]
 ![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/New%20Version%20Usage%20Field.png)
 
-### Usage Field with localStorage – Group View  
+### Usage Field with localStorage – Group View [v2.0.0]
 ![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/New%20Version%20Usage%20Field%202.png)
