@@ -10,6 +10,7 @@
   - [4. Script Include & Function Usage with Local Storage](#script-include--function-usage-with-local-storage)
 - [🛠️ Installation Instructions](#installation-instructions)
 - [🚀 Usage Examples](#usage-examples)
+- [📦 Releases](#releases)
 - [🖼️ Screenshots](#screenshots)
 
 ---
@@ -43,16 +44,14 @@ The project is organized into four top-level directories, one per widget plus sh
 ### 1. Script Include and Function Usage
 
 ```
-
 Script Include and Function Usage/
 ├── BackgroundScript/
 │   └── backgraundScriptWithFunctionSearch.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
-
 ```
 
 **Description:** This widget provides a clear interface to enter a Script Include `sys_id` and optional function name, then scans Business Rules, Client Scripts, UI Actions, and more. Results are grouped by record type or displayed in a sortable table. Full script lines are highlighted with match counts and easy copy/export options.
@@ -61,16 +60,14 @@ Script Include and Function Usage/
 ### 2. Usage Field
 
 ```
-
 Usage Field/
 ├── BackgroundScript/
 │   └── backgraundScript.js
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
-
 ```
 
 **Description:** Focused on dictionary fields, this widget lets you paste a `sys_id` from `sys_dictionary` to locate every script or configuration element referencing that field. Ideal for impact analysis before deleting or modifying fields.
@@ -79,14 +76,12 @@ Usage Field/
 ### 3. Usage Field with Local Storage
 
 ```
-
 Usage Field with Local Storage/
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
-
 ```
 
 **Description:** Builds on the Usage Field widget with a **Local Storage Tracker**. Each time you perform a lookup, the `sys_id` and timestamp are saved in the browser up to a limit of 10 entries. Quickly re-run past searches or clear history without retyping.
@@ -95,14 +90,12 @@ Usage Field with Local Storage/
 ### 4. Script Include & Function Usage with Local Storage
 
 ```
-
 Script Include & Function Usage with Local Storage/
 ├── Widget/
 │   ├── template.html
 │   ├── script.js
-│   ├── client\_script.js
+│   ├── client_script.js
 │   └── css.scss
-
 ```
 
 **Description:** Integrates the Script Include & Function Usage analysis with a built-in local history panel. Save combinations of Script Include ID and method names automatically. Click a saved entry to populate the search form and rerun the analysis in one click.
@@ -152,35 +145,50 @@ Script Include & Function Usage with Local Storage/
 
 ---
 
+<a id="releases"></a>
+## 📦 Releases
+
+### 🔖 Version 3.0.0 (Latest)
+📁 View this release on GitHub: [v3.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v3.0.0)  
+- Redesigned visual layout for better user experience (closer to Tailwind/NextJS standards)
+- Refactored recent search input with inline Copy button
+- Improved accordion-style panels with contextual icons and dynamic collapsing
+- Reorganized results to appear two per row (cards)
+- Updated local storage logic with better cleanup and formatting
+- Clean separation of sections in CSS and HTML for better readability
+- Bug fixes and performance enhancements
+
+### 📌 Version 2.0.0
+🔍 View release v2.0.0 on GitHub: [v2.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v2.0.0)
+- Initial public release of **Usage Field with Local Storage** widget
+- Basic layout and functionality for sys_id search
+- Local storage for tracking recent field lookups (up to 10)
+- CSV export of field usage results
+- Grouped and table view toggling
+
+---
+
 <a id="screenshots"></a>
 ## 🖼️ Screenshots
 
-### Usage Field with localStorage 
-![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Field%20Usage%20Finder%20localStorage.png)
+### v3.0.0
 
-### Usage Field with localStorage – Group View  
-![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Field%20Usage%20Finder%20localStorage%20Group.png)
+### Usage Field with localStorage [v3.0.0]
+![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/Version%203%20Usage%20Field.png)
 
-### Usage Field with localStorage – Table View
-![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Field%20Usage%20Finder%20localStorage%20Table.png)
+### Usage Field with localStorage - Group View [v3.0.0]
+![localStorage Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/Version%203%20Usage%20Field%20Group%20View.png)
 
-### Usage Field – Group View  
-![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Group%20Mode.png)
+### Usage Field with localStorage - Table View [v3.0.0]
+![localStorage Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Usage%20Field%20with%20localStorage/images/Version%203%20Usage%20Field%20Table%20View.png)
 
-### Usage Field – Table View  
-![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Usage%20Field%20Table%20Mode.png)
+### v1.0.0
 
-### Script Include and Function Usage with localStorage  
+### Script Include and Function Usage with localStorage  [v1.0.0]
 ![localStorage View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20localStorage.png)
 
-### Script Include and Function Usage with localStorage – Group View  
+### Script Include and Function Usage with localStorage – Group View  [v1.0.0]
 ![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20localStorage%20Group.png)
 
-### Script Include and Function Usage with localStorage – Table View  
+### Script Include and Function Usage with localStorage – Table View  [v1.0.0]
 ![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/blob/main/Images/Script%20Include%20and%20Function%20localStorage%20Table.png)
-
-### Script Include and Function Usage – Group View  
-![Group View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Group%20Mode.png)
-
-### Script Include and Function Usage – Table View  
-![Table View](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/raw/main/Images/Script%20Include%20and%20Function%20Usage%20Table%20Mode.png)
