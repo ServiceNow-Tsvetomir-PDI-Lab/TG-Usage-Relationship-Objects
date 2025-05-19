@@ -1,5 +1,37 @@
+<!-- =============================== -->
+<!-- SECTION: Widget Container Setup -->
+<!-- =============================== -->
 <div class="container p-4">
-  <!-- Loader Animation: Displays a loading animation while data is being fetched -->
+
+  <!-- =============================== -->
+  <!-- SECTION: Flash & Loader Messages -->
+  <!-- =============================== -->
+  <!-- SUBSECTION: Flash Messages -->
+  <div class="messages-container">
+    <!-- Success Message -->
+    <div class="alert alert-success alert-dismissible fade show" 
+         role="alert" 
+         ng-if="c.successMessage">
+      {{c.successMessage}}
+      <!-- <button type="button" 
+              class="btn-close" 
+              ng-click="c.successMessage = ''"
+              aria-label="Close"></button> -->
+    </div>
+
+    <!-- Error Message -->
+    <div class="alert alert-danger alert-dismissible fade show" 
+         role="alert" 
+         ng-if="c.errorMessage">
+      {{c.errorMessage}}
+      <!-- <button type="button" 
+              class="btn-close" 
+              ng-click="c.errorMessage = ''"
+              aria-label="Close"></button> -->
+    </div>
+  </div>
+
+  <!-- SUBSECTION: Loader -->
   <div class="loader-container" ng-show="c.isLoading">
     <div class="loader">
       <div class="box-load1"></div>
@@ -8,211 +40,325 @@
     </div>
   </div>
 
+  <!-- =============================== -->
+  <!-- SECTION: Main Content Row -->
+  <!-- =============================== -->
   <h3>Field Usage Finder</h3>
   <div class="row">
+    <!-- =============================== -->
+    <!-- SECTION: Main Input & Results -->
+    <!-- =============================== -->
     <div class="col-md-8">
-  <!-- Input Form: Allows user to enter the sys_id of the field to search for -->
-  <div class="info-section">
-    <span>Field where a specific field sys_id from the <code>sys_dictionary</code> table is referenced</span>
-  </div>
-  <div class="form-group">
-    <label>sys_id value</label>
-    <input type="text" class="form-control flex-grow-1 me-2" ng-model="c.data.fieldSysId" placeholder="Enter field sys_id">
-    <button class="btn-copy-id" ng-click="c.copyText(c.data.fieldSysId)" title="Copy ID">
-      <i class="fa fa-copy"></i>
-      Copy ID
-    </button>
-
-    <div class="d-flex align-items-center mt-3">
-      <button class="btn btn-primary me-2" ng-click="c.findUsage()">Find Usage</button>
-      <button class="btn btn-outline-secondary me-2" ng-if="c.data.results.length" ng-click="c.exportToCSV()">
-        Export to CSV
-      </button>
-      <button class="btn btn-danger" ng-if="c.data.results.length" ng-click="c.clearResults()">Clear</button>
-    </div>
-  </div>
-
-  <!-- View Mode Toggle: Switch between Grouped and Table views of the results -->
-  <div class="form-check mt-3" ng-if="c.data.results.length">
-    <label class="form-check-label me-2" for="toggleViewSwitch">
-      {{ c.data.viewMode === 'group' ? 'Grouped View' : 'Table View' }}
-    </label>
-    <label class="switch">
-      <input type="checkbox" id="toggleViewSwitch" ng-model="c.data.viewModeSwitch"
-        ng-change="c.toggleViewFromSwitch()">
-      <span class="slider"></span>
-    </label>
-  </div>
-  <!-- New section without toggle-->
-  <div class="results-section">
-    <ul class="nav nav-tabs">
-      <li role="presentation" ng-class="{active: c.data.viewMode === 'group'}" ng-click="c.data.viewMode = 'group'; c.data.viewModeSwitch = true">
-        <a href="javascript:void(0)"><i class="fa fa-th"></i> Grouped</a>
-      </li>
-      <li role="presentation" ng-class="{active: c.data.viewMode === 'table'}" ng-click="c.data.viewMode = 'table'; c.data.viewModeSwitch = false">
-        <a href="javascript:void(0)"><i class="fa fa-table"></i> Table</a>
-      </li>
-      <li class="pull-right">
-        <button class="btn btn-default btn-sm refresh-btn" ng-click="refresh()">
-          <i class="fa fa-refresh"></i> Refresh
+      <!-- SUBSECTION: Field Sys ID Input Form -->
+      <div class="info-section">
+        <span>Field where a specific field sys_id from the <code>sys_dictionary</code> table is referenced</span>
+      </div>
+      <div class="form-group">
+        <!-- <label>sys_id value</label> -->
+        <input type="text" class="form-control flex-grow-1 me-2" ng-model="c.data.fieldSysId"
+          placeholder="Enter field sys_id" >
+        <button class="btn-copy-id" ng-click="c.copyText(c.data.fieldSysId)" title="Copy ID">
+          <i class="fa fa-copy"></i>
+          
         </button>
-      </li>
-    </ul>
-    
-    <div class="tab-content">
-      <div ng-show="c.data.viewMode === 'group'" class="tab-pane active">
-        <div class="results-container">
-          <div class="empty-results ng-scope" ng-if="!hasResults">
-            <p class="text-muted text-center">Search results will appear here</p>
+
+        <div class="d-flex align-items-center mt-3">
+          <button class="btn btn-primary me-2" 
+                  ng-click="c.findUsage()" 
+                  ng-disabled="c.isLoading">
+            <span ng-if="c.isLoading" class="spinner-border spinner-border-sm me-1"></span>
+            Find Usage
+          </button>
+        </div>
+      </div>
+
+      <!-- SUBSECTION: View Mode Toggle -->
+      <div class="form-check mt-3" ng-if="c.data.results.length">
+        <label class="form-check-label me-2" for="toggleViewSwitch">
+          {{ c.data.viewMode === 'group' ? 'Grouped View' : 'Table View' }}
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="toggleViewSwitch" ng-model="c.data.viewModeSwitch"
+            ng-change="c.toggleViewFromSwitch()">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <!-- SUBSECTION: Results Section Tabs & Actions -->
+      <div class="results-section">
+        <ul class="nav nav-tabs">
+          <li role="presentation" ng-class="{active: c.data.viewMode === 'group'}"
+            ng-click="c.data.viewMode = 'group'; c.data.viewModeSwitch = true">
+            <a href="javascript:void(0)"><i class="fa fa-th"></i> Grouped</a>
+          </li>
+          <li role="presentation" ng-class="{active: c.data.viewMode === 'table'}"
+            ng-click="c.data.viewMode = 'table'; c.data.viewModeSwitch = false">
+            <a href="javascript:void(0)"><i class="fa fa-table"></i> Table</a>
+          </li>
+          <li class="pull-right">
+            <button class="btn btn-outline-secondary btn-sm action-btn" ng-if="c.data.results.length" ng-click="c.exportToCSV()">
+              <i class="fa fa-download me-1"></i>
+              <span class="d-none d-sm-inline">Export to CSV</span>
+            </button>
+            <button class="btn btn-danger btn-sm action-btn" ng-if="c.data.results.length" ng-click="c.clearResults()">
+              <i class="fa fa-times me-1"></i>
+              <span class="d-none d-sm-inline">Clear</span>
+            </button>
+            <button class="btn btn-default btn-sm action-btn refresh-btn" ng-click="refresh()">
+              <i class="fa fa-refresh"></i>
+              <span class="d-none d-sm-inline">Refresh</span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div ng-show="c.data.viewMode === 'group'" class="tab-pane active">
+            <div class="results-container">
+              <div class="empty-results ng-scope" ng-if="!hasResults">
+                <p class="text-muted text-center">Search results will appear here</p>
+              </div>
+            </div>
+          </div>
+          <div ng-show="c.data.viewMode === 'table'" class="tab-pane ng-hide">
+            <div class="results-container">
+              <div class="empty-results ng-scope" ng-if="!hasResults">
+                <p class="text-muted text-center">Table view of results will appear here</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div ng-show="c.data.viewMode === 'table'" class="tab-pane ng-hide">
-        <div class="results-container">
-          <div class="empty-results ng-scope" ng-if="!hasResults">
-            <p class="text-muted text-center">Table view of results will appear here</p>
+
+      <!-- SUBSECTION: Results Display - Grouped View -->
+      <div ng-if="c.data.viewMode === 'group' && c.data.results.length" class="mt-5 results-container-wrapper">
+        <h5>Results for: {{ c.data.fieldName }}</h5>
+        <div ng-repeat="(type, group) in c.groupedResults">
+          <h5 class="mt-4">{{ type }}</h5>
+          <div class="row g-3">
+            <div class="col-12" ng-repeat="r in group track by $index">
+              <div class="result-card p-3 shadow-sm rounded h-100">
+                <h5 class="result-title">
+                  <a href="{{ r.url }}" target="_blank">{{ r.name }}</a>
+                </h5>
+                <div>
+                  <div class="row small text-muted mb-2">
+                    <div class="col-md-6"><strong>Table:</strong> {{ r.table }}</div>
+                    <div class="col-md-6"><strong>Script Table:</strong> {{ r.scriptTable }}</div>
+                  </div>
+                  <div class="row small text-muted mb-2">
+                    <div class="col-md-6"><strong>Match Count:</strong> {{ r.matchCount }}</div>
+                    <div class="col-md-6"><strong>Match Row:</strong> {{ r.matchRow }}</div>
+                  </div>
+                </div>
+                <pre class="bg-light p-2 rounded">{{ r.match }}</pre>
+                <div class="mt-2 d-flex flex-wrap gap-2">
+                  <button class="btn btn-sm btn-outline-secondary" ng-click="c.copyText(r.match)">
+                    <i class="fa fa-copy me-1"></i> Copy
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" ng-click="c.viewScript(r)">
+                    <i class="fa fa-eye me-1"></i> View Full Script
+                  </button>
+                  <button class="btn btn-sm btn-outline-warning" ng-click="c.editScript(r)">
+                    <i class="fa fa-edit me-1"></i> Edit Full Script
+                  </button>
+                  <a class="btn btn-sm btn-outline-dark" href="{{ r.url }}" target="_blank">
+                    <i class="fa fa-external-link me-1"></i> Open
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Results Display: Grouped View - Shows results categorized by type -->
-  <div ng-if="c.data.viewMode === 'group' && c.data.results.length" class="mt-5">
-    <h5>Results for: {{ c.data.fieldName }}</h5>
-    <div ng-repeat="(type, group) in c.groupedResults">
-      <h5 class="mt-4">{{ type }}</h5>
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="r in group">
-          <strong><a href="{{ r.url }}" target="_blank">{{ r.name }}</a></strong><br>
-          <small>
-            <strong>Table:</strong> {{ r.table }}<br>
-            <strong>Script Table:</strong> {{ r.scriptTable }}<br>
-            <!-- <strong>sys_id:</strong> {{ r.sys_id }}<br> -->
-            <strong>Match Count:</strong> {{ r.matchCount }}<br>
-            <strong>Match Row:</strong> {{ r.matchRow }}
-          </small>
-          <pre class="mt-2">{{ r.match }}</pre>
-          <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋 Copy</button>
-          <button class="btn btn-sm btn-outline-info me-1" ng-click="c.viewScript(r)">🔍 View Full Script</button>
-          <button class="btn btn-sm btn-outline-info me-1" ng-click="c.editScript(r)">Edit Full Script</button>
-          <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Results Display: Table View - Shows results in a detailed tabular format -->
-  <div ng-if="c.data.viewMode === 'table' && c.data.results.length" class="mt-4">
-    <h5>Results for: {{ c.data.fieldName }}</h5>
-    <table class="table table-striped mt-3">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Name</th>
-          <th>Table</th>
-          <th>Script Table</th>
-          <!-- <th>sys_id</th> -->
-          <th>Match Count</th>
-          <th>Match Row</th>
-          <th>Match Line(s)</th>
-          <!--
+      <!-- SUBSECTION: Results Display - Table View -->
+      <div ng-if="c.data.viewMode === 'table' && c.data.results.length" class="mt-4">
+        <h5>Results for: {{ c.data.fieldName }}</h5>
+        <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <!-- <th>Table</th> -->
+              <!-- <th>Script Table</th> -->
+              <!-- <th>sys_id</th> -->
+              <th>Match Count</th>
+              <th>Match Row</th>
+              <th>Match Line(s)</th>
+              <!--
           <th>Action</th>
 					-->
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="r in c.data.results">
-          <td>{{ r.type }}</td>
-          <td><a href="{{ r.url }}" target="_blank">{{ r.name }}</a></td>
-          <td>{{ r.table }}</td>
-          <td>{{ r.scriptTable }}</td>
-          <!-- <td>{{ r.sys_id }}</td> -->
-          <td>{{ r.matchCount }}</td>
-          <td>{{ r.matchRow }}</td>
-          <td>
-            <pre>{{ r.match }}</pre>
-            <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋 Copy</button>
-            <button class="btn btn-sm btn-outline-info" ng-click="c.viewScript(r)">🔍 View Full Script</button>
-            <button class="btn btn-sm btn-outline-info me-1" ng-click="c.editScript(r)">Edit Full Script</button>
-            <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
-          </td>
-          <!--
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="r in c.data.results">
+              <td>{{ r.type }}</td>
+              <td><a href="{{ r.url }}" target="_blank" class="result-link">{{ r.name }}</a></td>
+              <!-- <td>{{ r.table }}</td> -->
+              <!-- <td>{{ r.scriptTable }}</td> -->
+              <!-- <td>{{ r.sys_id }}</td> -->
+              <td>{{ r.matchCount }}</td>
+              <td>{{ r.matchRow }}</td>
+              <td>
+                <pre>{{ r.match }}</pre>
+                <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋 Copy</button>
+                <button class="btn btn-sm btn-outline-info" ng-click="c.viewScript(r)">🔍 View Full Script</button>
+                <button class="btn btn-sm btn-outline-info me-1" ng-click="c.editScript(r)">
+                  <i class="fa fa-edit me-1"></i>
+                  Edit Full Script
+                </button>
+                <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
+              </td>
+              <!--
           <td>
             <button class="btn btn-sm btn-outline-secondary me-1" ng-click="c.copyText(r.match)">📋</button>
             <button class="btn btn-sm btn-outline-info me-1" ng-click="c.viewScript(r)">🔍</button>
             <a class="btn btn-sm btn-link" href="{{ r.url }}" target="_blank">Open</a>
           </td>
 					-->
-      </tbody>
-    </table>
-  </div>
+          </tbody>
+        </table>
+      </div>
     </div> <!-- end of col-md-8 -->
+
+    <!-- =============================== -->
+    <!-- SECTION: Info Panels & Recent Searches -->
+    <!-- =============================== -->
     <div class="col-md-4">
-  <!-- Informational Alert: Explains the purpose of the tool to the user -->
-  <div class="alert alert-info mt-3">
-    <strong>What is this?</strong><br>
-    This tool helps you find where a specific field (from the <code>sys_dictionary</code> table) is referenced across
-    your instance. Useful for refactoring and impact analysis.
-  </div>
 
-  <!-- Instructions Section: Guides the user on how to use the widget effectively -->
-  <div class="alert alert-secondary">
-    <strong>How to Use:</strong>
-    <ol class="mt-2 mb-0 ps-3">
-      <li>Go to <code>System Definition > Dictionary</code> and find your field.</li>
-      <li>Copy its <code>sys_id</code>.</li>
-      <li>Paste it in the input box below and click <strong>Find Usage</strong>.</li>
-      <li>Switch between <strong>Grouped</strong> and <strong>Table</strong> view as needed.</li>
-    </ol>
-  </div>
-
-  <!-- Tips Section: Provides helpful hints for interpreting and using the results -->
-  <div class="alert alert-warning">
-    <strong>Tips:</strong><br>
-    - Fields used in scripts may appear multiple times.<br>
-    - You can copy the exact lines or open the full script via buttons provided in results.<br>
-    - Use <strong>Clear</strong> to reset and run a new search.
-  </div>
-
-  <!-- Local Storage Tracker: Manage saved sys_id entries for quick access -->
-  <div class="mt-5 recent-searches">
-    <div class="recent-header">
-      <h3 class="text-2xl font-semibold leading-none tracking-tight">Recent Searches</h3>
-      <button class="btn-clear-history d-flex align-items-center" ng-click="c.clearHistory()" ng-if="c.data.entries.length">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
-          <path d="M3 6h18"></path>
-          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-          <line x1="10" x2="10" y1="11" y2="17"></line>
-          <line x1="14" x2="14" y1="11" y2="17"></line>
-        </svg>
-        Clear History
-      </button>
-    </div>
-    <ul class="list-group" ng-if="c.data.entries.length">
-      <li class="list-group-item d-flex justify-content-between align-items-start"
-          ng-repeat="item in c.data.entries track by $index">
-        <div>
-          <a href="#" ng-click="c.data.fieldSysId = item.value">{{ item.value }}</a><br>
-          <small class="text-muted">{{ item.date }}</small>
+      <!-- SUBSECTION: Info Accordion Panels -->
+      <div class="info-accordion">
+        <!-- What is this? Panel -->
+        <div class="accordion-item" data-panel="what-is-this">
+          <button class="accordion-header" ng-click="c.toggleAccordion($event)" aria-expanded="false"
+            aria-controls="content-{{$index}}" aria-label="Toggle What is this? section">
+            <div class="accordion-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-width="2" class="me-2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8a4 4 0 0 1 4 4c0 1.5-1 2-2 3l-1 1" />
+                <line x1="12" y1="17" x2="12" y2="17" />
+              </svg>
+              <strong>What is this?</strong>
+            </div>
+            <svg class="accordion-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <p>This tool helps you find where a specific field (from <code>sys_dictionary</code> table) is referenced
+              across your instance. Useful for refactoring and impact analysis.</p>
+          </div>
         </div>
-        <button class="btn btn-sm btn-secondary d-flex align-items-center justify-content-center" ng-click="c.deleteEntry($index)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-0">
-            <path d="M3 6h18"></path>
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-            <line x1="10" x2="10" y1="11" y2="17"></line>
-            <line x1="14" x2="14" y1="11" y2="17"></line>
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </div>
+
+        <!-- How to Use Panel -->
+        <div class="accordion-item" data-panel="how-to-use">
+          <button class="accordion-header" ng-click="c.toggleAccordion($event)" aria-expanded="false"
+            aria-controls="content-{{$index}}" aria-label="Toggle How to Use section">
+            <div class="accordion-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-width="2" class="me-2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="10 8 16 12 10 16 10 8" />
+              </svg>
+              <strong>How to Use?</strong>
+            </div>
+            <svg class="accordion-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <ol class="mb-0">
+              <li>Go to <code>System Definition > Dictionary</code> and find your field</li>
+              <li>Copy its <code>sys_id</code></li>
+              <li>Paste it in the input box and click <strong>Find Usage</strong></li>
+              <li>Switch between <strong>Grouped</strong> and <strong>Table</strong> views as needed</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Tips Panel -->
+        <div class="accordion-item" data-panel="tips">
+          <button class="accordion-header" ng-click="c.toggleAccordion($event)" aria-expanded="false"
+            aria-controls="content-{{$index}}" aria-label="Toggle Tips section">
+            <div class="accordion-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-width="2" class="me-2" viewBox="0 0 24 24">
+                <path d="M9 18h6m-3-3v3m-5-3a7 7 0 1 1 14 0c0 2.5-2 4.5-4.5 4.5S10 20.5 10 18Z" />
+              </svg>
+              <strong>Tips</strong>
+            </div>
+            <svg class="accordion-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <ul class="list-unstyled mb-0">
+              <li>• Fields used in scripts may appear multiple times</li>
+              <li>• You can copy exact lines or open the full script via buttons</li>
+              <li>• Use <strong>Clear</strong> to reset and run a new search</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- end of info-accordion -->
+
+      <!-- SUBSECTION: Recent Searches (Local Storage Tracker) -->
+      <div class="mt-5 recent-searches">
+        <div class="recent-header">
+          <h3 class="text-2xl font-semibold leading-none tracking-tight">Recent Searches</h3>
+          <button class="btn-clear-history d-flex align-items-center" ng-click="c.clearHistory()"
+            ng-if="c.data.entries.length">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+              <line x1="10" x2="10" y1="11" y2="17"></line>
+              <line x1="14" x2="14" y1="11" y2="17"></line>
+            </svg>
+            Clear History
+          </button>
+        </div>
+        <ul class="list-group" ng-if="c.data.entries.length">
+          <li class="list-group-item d-flex justify-content-between align-items-start"
+            ng-repeat="item in c.data.entries track by $index">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">
+                <a href="#" ng-click="c.data.fieldSysId = item.value">{{ item.value }}</a>
+              </div>
+              <div class="mt-1">
+                <span class="badge bg-primary me-1">Table: {{ item.fieldTable }}</span>
+                <span class="badge bg-info">Field: {{ item.fieldName }}</span>
+              </div>
+              <div class="text-muted small mt-1">
+                <i class="fa fa-clock-o"></i> {{ item.date }}
+              </div>
+            </div>
+            <button class="btn btn-sm btn-secondary d-flex align-items-center justify-content-center"
+              ng-click="c.deleteEntry($index)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-0">
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                <line x1="10" x2="10" y1="11" y2="17"></line>
+                <line x1="14" x2="14" y1="11" y2="17"></line>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <!-- end of recent-searches -->
     </div> <!-- end of col-md-4 -->
   </div> <!-- end of row -->
 
-  <!-- Full Script Modal Read-Only: Displays the complete script content in a modal for viewing -->
+  <!-- =============================== -->
+  <!-- SECTION: Modals for Full Script -->
+  <!-- =============================== -->
+  <!-- SUBSECTION: Full Script Modal Read-Only -->
   <div class="modal fade" id="scriptModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
@@ -226,15 +372,14 @@
           <pre>{{ c.fullScript }}</pre>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" 
-                  data-bs-dismiss="modal" 
-                  ng-click="c.closeModalFullScript()">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            ng-click="c.closeModalFullScript()">Close</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Full Script Modal Editable: Allows editing of the full script within a modal -->
+  <!-- SUBSECTION: Full Script Modal Editable -->
   <div class="modal fade" id="scriptModalEditable" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
@@ -249,12 +394,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" ng-click="c.saveEditedScript()">Save</button>
-          <button type="button" class="btn btn-secondary" 
-                  data-bs-dismiss="modal" 
-                  ng-click="c.closeEditableModal()">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            ng-click="c.closeEditableModal()">Close</button>
         </div>
       </div>
     </div>
   </div>
-
 </div>

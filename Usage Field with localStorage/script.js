@@ -1,4 +1,5 @@
-(function() {
+(function () {
+  // === Section: GET SCRIPT from Record ===
   // Handle request to retrieve script content from a specified record
   if (input && input.action === 'getScript') {
     var table = input.table;
@@ -25,6 +26,7 @@
     return;
   }
 
+  // === Section: SAVE SCRIPT to Record ===
   // Handle request to save updated script content into a specified record
   if (input && input.action === 'saveScript') {
     var saveRec = new GlideRecord(input.table);
@@ -45,6 +47,7 @@
     return;
   }
 
+  // === Section: Initialization and Input Validation ===
   // Initialize results and error data properties for the main processing flow
   data.results = [];
   data.error = '';
@@ -66,7 +69,11 @@
   var fieldName = dictGr.element + '';
   var fieldTable = dictGr.name + '';
   data.fieldName = fieldName;
+  data.fieldTable = fieldTable;
 
+  // gs.info('[TG Widget] Loaded sys_dictionary: field=' + dictGr.element + ', table=' + dictGr.name);
+
+  // === Section: Tables to Scan Definition ===
   // Define tables and fields to scan for references to the field
   var tablesToScan = [
     { table: 'sys_script', field: 'script', type: 'Business Rule', tableField: 'collection' },
@@ -79,9 +86,11 @@
     { table: 'sysauto_script', field: 'script', type: 'Scheduled Script Execution', tableField: null }
   ];
 
+  // === Section: GlideRecord Pattern Detection ===
   // Regex pattern to detect GlideRecord variable declarations and their table names
   var grDeclarePattern = /var\s+(\w+)\s*=\s*new\s+[\w.]+\(["']([a-zA-Z0-9_]+)["']\)/g;
 
+  // === Section: Scanning Each Script Table for References ===
   // Iterate through each table to scan for script references to the field
   for (var i = 0; i < tablesToScan.length; i++) {
     var t = tablesToScan[i];
@@ -99,6 +108,7 @@
       var matchFound = false;
       var scriptTable = t.tableField && gr.isValidField(t.tableField) ? gr.getValue(t.tableField) : '';
 
+      // --- Subsection: GlideRecord Declaration Mapping ---
       // Map variable names to table names based on GlideRecord declarations in the script
       var variables = {};
       var declareMatch;
@@ -108,6 +118,7 @@
         variables[varName] = tableName;
       }
 
+      // --- Subsection: Script Line Analysis ---
       // Search each line for direct 'current.fieldName' or variable.fieldName references matching the target table
       for (var j = 0; j < lines.length; j++) {
         var line = lines[j];
@@ -127,6 +138,7 @@
         }
       }
 
+      // --- Subsection: Result Push if Match Found ---
       // If any matches found, add detailed info to results array
       if (matchFound) {
         data.results.push({

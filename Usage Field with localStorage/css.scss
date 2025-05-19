@@ -1,238 +1,93 @@
-// === Layout and Container Styles ===
-/* Container styling for overall widget layout */
+// ============================================================================
+// TG Usage Field with Local Storage - CSS Stylesheet
+// ============================================================================
+// TABLE OF CONTENTS
+//
+// 1. Layout & Structure
+//    > Container Wrapper
+//    > Headings
+//
+// 2. Form & Input Components
+//    > Form Group Layout
+//    > Info Section
+//
+// 3. Button Styling
+//    > Base & Outline Buttons
+//    > Action Panel Buttons
+//
+// 4. Modal Styling
+//    > Modal Content & Titles
+//
+// 5. Utility Classes & Animation
+//    > Loader Animation
+//    > Animation Keyframes
+//
+// 6. Result Cards & Recent Searches
+//    > Result Card
+//    > Recent Searches
+//
+// 7. Special Panels (Accordions, Tips)
+//    > Info Accordion
+//
+// 8. Alerts & Messages
+//    > Alert Boxes
+//    > Toast Messages
+//
+// 9. Miscellaneous
+//    > Toggle Switch
+//    > Conditional Visibility
+// ============================================================================
+
+
+// === SECTION: Layout & Structure ===
+// > Subsection: Container Wrapper
 .container {
-  background-color: #ffffff; /* white background for clean look */
-  border-radius: 10px; /* rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+  background-color: #ffffff;
+  /* white background for clean look */
+  border-radius: 10px;
+  /* rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* subtle shadow for depth */
 }
 
-/* Headings styling */
-h3, h5 {
-  font-weight: 600; /* bold for visibility */
-  color: #0b5ed7; /* ServiceNow brand blue */
+// > Subsection: Headings
+h3,
+h5 {
+  font-weight: 600;
+  /* bold for visibility */
+  color: #0b5ed7;
+  /* ServiceNow brand blue */
+}
+h5{
+  font-size: 1.7rem;
+  /* slightly larger for emphasis */
 }
 
 
-// === Alert Box Styling ===
-/* Alert box base styling */
-.alert {
-  border-radius: 8px;
-  padding: 1rem;
-  font-size: 0.95rem; /* slightly smaller font */
-}
-
-/* Info alert background and border */
-.alert-info {
-  background-color: #e7f3fe;
-  border-left: 5px solid #0dcaf0; /* blue accent bar */
-}
-
-/* Secondary alert for instructions */
-.alert-secondary {
-  background-color: #f8f9fa;
-  border-left: 5px solid #6c757d; /* gray accent bar */
-}
-
-/* Warning alert for tips */
-.alert-warning {
-  background-color: #fff3cd;
-  border-left: 5px solid #ffc107; /* yellow accent bar */
-}
-
-// === Form Input and Field Styling ===
-/* Add spacing between form fields */
+// === SECTION: Form & Input Components ===
+// > Subsection: Form Group Layout
 .form-group {
   margin-top: 1.5rem;
 }
 
-/* Form control inputs */
-input.form-control {
-  border-radius: 6px; /* rounded input boxes */
-}
-
-// === Button Styling ===
-/* Base button styling */
-button {
-  border-radius: 6px !important;
-}
-
-/* Outline button transitions for better UX */
-.btn-outline-secondary,
-.btn-outline-info {
-  transition: all 0.2s ease-in-out;
-}
-
-// === Results Display Styling ===
-/* Styling for code preview blocks */
-pre {
-  background-color: #f8f9fa;
-  padding: 0.75rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  white-space: pre-wrap; /* allow wrapping in <pre> */
-}
-
-/* Slightly smaller table font */
-.table {
-  font-size: 0.9rem;
-}
-
-// === Modal Styling ===
-/* Modal content appearance */
-.modal-content {
-  border-radius: 10px;
-}
-
-/* Bold title inside modal */
-.modal-title {
-  font-weight: 600;
-}
-
-// === Toggle Switch Styling ===
-/* Toggle switch styling */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  margin-left: 0.5rem;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Track of the switch */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 24px;
-}
-
-/* Circle inside the switch */
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-/* Switch when toggled on */
-input:checked + .slider {
-  background-color: #0d6efd; /* blue when active */
-}
-
-/* Move toggle circle to the right when on */
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-// === Conditional Visibility Overrides ===
-/* Hide Local Storage Tracker Section Input field and Save button*/
-input.form-control.mb-2.ng-pristine.ng-untouched.ng-valid.ng-empty {
-    display: none;
-}
-button.btn.btn-secondary.me-2{
-  display:none;
-}
-
-// === Loader Animation Styling ===
-/* Loader Container */
-.loader-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* Loader Animation */
-.loader {
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.box-load1, .box-load2, .box-load3 {
-  border: 3px solid #000;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-/* The `.box-load1` class is defining a CSS animation property for an element with that class.
-Specifically, it is setting the animation named `animate` to run for a duration of 0.5 seconds, with
-a linear timing function, and to repeat infinitely. This means that the element with the
-`.box-load1` class will continuously rotate by 90 degrees in a linear manner every 0.5 seconds,
-creating a spinning effect. */
-.box-load1 {
-  animation: animate 0.5s linear infinite;
-}
-
-/* The `.box-load2` class is defining a CSS animation property for an element with that class.
-Specifically, it is setting the animation named `animate` to run for a duration of 0.5 seconds, with
-a linear timing function, and to repeat infinitely. Additionally, it introduces a delay of 0.2
-seconds before starting the animation. */
-.box-load2 {
-  animation: animate 0.5s linear infinite 0.2s;
-}
-
-/* The `.box-load3` class is defining a CSS animation property for an element with that class.
-Specifically, it is setting the animation named `animate` to run for a duration of 0.5 seconds, with
-a linear timing function, and to repeat infinitely. Additionally, it introduces a delay of 0.4
-seconds before starting the animation. */
-.box-load3 {
-  animation: animate 0.5s linear infinite 0.4s;
-}
-
-// === Animation Keyframes ===
-/* The `@keyframes animate` rule in CSS is defining a set of keyframes for an animation named
-`animate`. */
-@keyframes animate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(90deg);
-  }
-}
-
-
-
-// Flex layout for inline input and buttons within form-group
+// > Sub-subsection: Flex layout for inline input and buttons within form-group
 .form-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;        // space between input and buttons
-  margin-top: 1rem;   // vertical spacing above group
+  gap: 0.5rem; // space between input and buttons
+  margin-top: 1rem; // vertical spacing above group
 }
 
 .form-group .form-control {
-  flex: 1;            // input grows to fill available space
-  margin: 0;          // reset any default margins
+  flex: 1; // input grows to fill available space
+  margin: 0; // reset any default margins
 }
 
 .form-group .btn {
-  margin: 0;          // rely on gap for spacing
+  margin: 0; // rely on gap for spacing
 }
 
-// Info section above input
+// > Subsection: Info Section
 .info-section {
   display: flex;
   justify-content: space-between;
@@ -256,8 +111,260 @@ seconds before starting the animation. */
   font-weight: 600;
 }
 
-// === Recent Searches and Field Styling ===
-/* Styling for Local Storage Tracker (Saved Entries) */
+// > Subsection: Input Field Styling
+input.form-control {
+  border-radius: 6px;
+  /* rounded input boxes */
+}
+
+
+// === SECTION: Button Styling ===
+// > Subsection: Base Button Styling
+button {
+  border-radius: 6px !important;
+}
+
+// > Subsection: Outline Button Transitions
+.btn-outline-secondary,
+.btn-outline-info {
+  transition: all 0.2s ease-in-out;
+}
+
+// > Subsection: Refined Button Appearance for Action Panel
+button.btn-copy-id {
+  background-color: #f8f9fa !important;
+  border: none !important;
+  font-weight: 600;
+  color: #0f172a !important;
+  padding: 0.6rem 1.25rem;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #e2e8f0 !important;
+  }
+
+  i {
+    font-size: 1.8rem;
+  }
+}
+
+.btn-primary {
+  background-color: #2563eb !important;
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #1d4ed8 !important;
+  }
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+.btn-outline-secondary,
+.btn-outline-info,
+.btn-outline-warning{
+  background-color: #f1f5f9 !important;
+  border: none !important;
+  // font-weight: 600;
+  color: #0f172a !important;
+  padding: 0.6rem 1.25rem;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #e2e8f0 !important;
+  }
+
+  i {
+    font-size: 1.8rem;
+  }
+}
+
+.btn-danger {
+  background-color: #ef4444 !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #dc2626 !important;
+  }
+
+  i {
+    font-size: 1.8rem;
+  }
+}
+
+.btn-default {
+  background-color: #f8f9fa !important;
+  border: none !important;
+  font-weight: 600;
+  color: #0f172a !important;
+  padding: 0.6rem 1.25rem;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: #e2e8f0 !important;
+  }
+
+  i {
+    font-size: 1.8rem;
+  }
+}
+
+
+// === SECTION: Modal Styling ===
+// > Subsection: Modal Content
+.modal-content {
+  border-radius: 10px;
+}
+
+// > Subsection: Modal Title
+.modal-title {
+  font-weight: 600;
+}
+
+
+// === SECTION: Utility Classes & Animation ===
+// > Subsection: Loader Animation
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.box-load1,
+.box-load2,
+.box-load3 {
+  border: 3px solid #000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.box-load1 {
+  animation: animate 0.5s linear infinite;
+}
+
+.box-load2 {
+  animation: animate 0.5s linear infinite 0.2s;
+}
+
+.box-load3 {
+  animation: animate 0.5s linear infinite 0.4s;
+}
+
+// > Subsection: Animation Keyframes
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+
+// === SECTION: Result Cards & Recent Searches ===
+// > Subsection: Result Card Styling
+.results-container-wrapper {
+  .row {
+    margin-bottom: 1.5rem;
+  }
+
+  .result-card {
+    background-color: #ffffff;
+    border: 1px solid #e3e6ea;
+    border-radius: 12px;
+    padding: 0.9rem;
+    margin: 0.5rem 1.75rem 1rem 1.375rem; // Using rem units for better scaling
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    // Custom font-size for the details row in result card
+    .row.row-cols-2.small.text-muted.mb-3.g-3 {
+      font-size: 1.4rem;
+    }
+
+    .result-title {
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+
+      a {
+        text-decoration: none;
+        color: #0d6efd;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    pre {
+      font-size: 1.075rem;
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+
+      i {
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}
+
+// > Subsection: Recent Searches and Field Styling
 .recent-searches {
   background: #ffffff;
   border: 1px solid #e0e0e0;
@@ -266,7 +373,7 @@ seconds before starting the animation. */
   margin-top: 1.5rem;
 }
 
-.recent-searches > h4 {
+.recent-searches>h4 {
   margin: 0 0 1rem;
   font-size: 1.25rem;
   font-weight: 600;
@@ -284,8 +391,11 @@ seconds before starting the animation. */
   justify-content: space-between;
   align-items: center;
   border-top: 1.1rem solid #e9ecef;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  border: 1px solid transparent;
 }
-
 
 .recent-searches .list-group-item a {
   color: #005ff8;
@@ -308,7 +418,7 @@ seconds before starting the animation. */
   padding: 0.25rem;
 }
 
-/* Header for Recent Searches section */
+// > Sub-subsection: Recent Searches Header, Typography, and Button
 .recent-searches .recent-header {
   display: flex;
   justify-content: space-between;
@@ -316,24 +426,18 @@ seconds before starting the animation. */
   margin-bottom: 1rem;
 }
 
-/* Subheadings */
 .tracking-tight {
   letter-spacing: -0.025em;
 }
 
-/* Font size adjustments */
 .leading-none {
   line-height: 1;
 }
 
-/* Font size for larger text */
 .font-semibold {
   font-weight: 600;
 }
 
-
-
-/* Custom Clear History button styling */
 .btn-clear-history {
   background: none;
   border: none;
@@ -345,6 +449,495 @@ seconds before starting the animation. */
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 .btn-clear-history i {
   font-size: 1.2rem;
+}
+
+// > Sub-subsection: Enhanced Recent Searches Styling
+.recent-searches {
+  .list-group-item {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent;
+
+    &:hover {
+      transform: translateX(5px);
+      background-color: rgba(0, 110, 253, 0.04);
+      border-color: rgba(0, 110, 253, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+
+      .text-muted {
+        color: #6c757d !important;
+      }
+
+      .btn {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .btn {
+    opacity: 0.7;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
+    }
+  }
+}
+
+.recent-header {
+  h3 {
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0d6efd;
+    }
+  }
+
+  .btn-clear-history {
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #dc3545;
+      transform: scale(1.05);
+
+      svg {
+        stroke: #dc3545;
+      }
+    }
+  }
+}
+
+// > Subsection: Results Display Styling
+pre {
+  background-color: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1.085rem;
+  white-space: pre-wrap;
+  /* allow wrapping in <pre> */
+}
+
+// .table {
+//   font-size: 0.9rem;
+// }
+
+
+// === SECTION: Special Panels (Accordions, Tips) ===
+// > Subsection: Info Accordion Styling
+.info-accordion {
+  margin-bottom: 2rem;
+
+  .accordion-item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    // Add alert-info styling
+    &[data-panel="what-is-this"] {
+      border: none;
+      background-color: #e7f3fe;
+      border-left: 5px solid #0dcaf0;
+
+      .accordion-header {
+        background-color: transparent;
+
+        &:hover {
+          background-color: rgba(13, 202, 240, 0.1);
+        }
+
+        .accordion-title {
+          color: #055160;
+
+          svg {
+            stroke: #0dcaf0;
+          }
+        }
+
+        .accordion-arrow {
+          stroke: #0dcaf0;
+        }
+      }
+
+      .accordion-content {
+        background-color: transparent;
+
+        &.active {
+          border-top: 1px solid rgba(13, 202, 240, 0.2);
+
+          p {
+            margin-bottom: 0;
+            color: #495057;
+            font-size: .95rem; // Added specific font-size for paragraphs
+          }
+        }
+
+        p {
+          color: #055160;
+        }
+
+        code {
+          background: rgba(13, 202, 240, 0.2);
+          color: #055160;
+        }
+      }
+    }
+
+    // Styling for How to Use panel
+    &[data-panel="how-to-use"] {
+      border: none;
+      background-color: #e9ecef;
+      border-left: 5px solid #6c757d;
+
+      .accordion-header {
+        background-color: transparent;
+
+        &:hover {
+          background-color: rgba(108, 117, 125, 0.1);
+        }
+
+        .accordion-title {
+          color: #495057;
+
+          svg {
+            stroke: #6c757d;
+          }
+        }
+
+        .accordion-arrow {
+          stroke: #6c757d;
+        }
+      }
+
+      .accordion-content {
+        background-color: transparent;
+
+        &.active {
+          border-top: 1px solid rgba(108, 117, 125, 0.2);
+
+          li {
+            margin-bottom: 0;
+            color: #495057;
+            font-size: .95rem; // Added specific font-size for paragraphs
+          }
+        }
+
+        ol {
+          color: #495057;
+          padding-left: 1.25rem;
+
+          li {
+            margin-bottom: 0.5rem;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        code {
+          background: rgba(108, 117, 125, 0.2);
+          color: #495057;
+          padding: 0.2em 0.4em;
+          border-radius: 4px;
+        }
+
+        strong {
+          color: #495057;
+        }
+      }
+    }
+
+    // Styling for Tips panel
+    &[data-panel="tips"] {
+      border: none;
+      background-color: #fff3cd;
+      border-left: 5px solid #ffc107;
+
+      .accordion-header {
+        background-color: transparent;
+
+        &:hover {
+          background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        .accordion-title {
+          color: #664d03;
+
+          svg {
+            stroke: #ffc107;
+          }
+        }
+
+        .accordion-arrow {
+          stroke: #ffc107;
+        }
+      }
+
+      .accordion-content {
+        background-color: transparent;
+
+        &.active {
+          border-top: 1px solid rgba(255, 193, 7, 0.2);
+
+          li {
+            margin-bottom: 0;
+            color: #495057;
+            font-size: .95rem; // Added specific font-size for paragraphs
+          }
+        }
+
+        ul {
+          color: #664d03;
+
+          li {
+            margin-bottom: 0.5rem;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &:before {
+              content: "•";
+              margin-right: 0.5rem;
+              color: #ffc107;
+            }
+          }
+        }
+
+        strong {
+          color: #664d03;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .accordion-header {
+    width: 100%;
+    border: none;
+    background: none;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    .accordion-title {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 1.6rem;
+
+      svg {
+        stroke: #0d6efd;
+      }
+    }
+
+    .accordion-arrow {
+      stroke: #6c757d;
+      transition: transform 0.3s ease;
+    }
+
+    &[aria-expanded="true"] {
+      .accordion-arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .accordion-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+
+    &.active {
+      padding: 1rem;
+      max-height: 500px;
+    }
+
+    p,
+    ul,
+    ol {
+      margin-bottom: 0;
+      color: #495057;
+    }
+
+    code {
+      background: rgba(13, 110, 253, 0.1);
+      color: #0d6efd;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+  }
+}
+
+
+// === SECTION: Alerts & Messages ===
+// > Subsection: Alert Box Styling
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.95rem;
+  /* slightly smaller font */
+}
+
+.alert-info {
+  background-color: #e7f3fe;
+  border-left: 5px solid #0dcaf0;
+  /* blue accent bar */
+}
+
+.alert-secondary {
+  background-color: #f8f9fa;
+  border-left: 5px solid #6c757d;
+  /* gray accent bar */
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-left: 5px solid #ffc107;
+  /* yellow accent bar */
+}
+
+// > Subsection: Toast Messages Styling
+.messages-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+  width: 400px;
+
+  .alert {
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+
+    &.fade {
+      opacity: 0;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
+    .btn-close {
+      font-size: 1.25rem;
+      padding: 1.25rem;
+      opacity: 0.75;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+// === SECTION: Miscellaneous ===
+// > Subsection: Toggle Switch Styling
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-left: 0.5rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #0d6efd;
+  /* blue when active */
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+// > Subsection: Conditional Visibility Overrides
+input.form-control.mb-2.ng-pristine.ng-untouched.ng-valid.ng-empty {
+  display: none;
+}
+
+button.btn.btn-secondary.me-2 {
+  display: none;
+}
+
+.d-none { display: none !important; }
+@media (min-width: 576px) {
+  .d-sm-inline { display: inline !important; }
+}
+.action-btn {
+  margin-right: 1rem;
+}
+.action-btn:last-child {
+  margin-right: 0;
+}
+.result-link {
+  text-decoration: none;
+  color: #0d6efd !important;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.result-link:hover,
+.result-link:focus {
+  text-decoration: underline;
+  color: #084298 !important;
 }
