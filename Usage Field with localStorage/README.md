@@ -130,7 +130,8 @@ Version 3.0.0 introduces a refreshed design and improved user experience, includ
 
 ## 🔖 Version History
 
-### v3.0.0
+### [v3.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v3.0.0)
+📁 View this release on GitHub: [v3.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v3.0.0)
 - UI redesign inspired by modern design systems (Next.js)
 - Accordion-style contextual help
 - Cleaner and responsive layout
@@ -138,7 +139,8 @@ Version 3.0.0 introduces a refreshed design and improved user experience, includ
 - Improved grouping of scripts and spacing
 - Full code refactor with modular sections and comments
 
-### v2.0.0
+### [v2.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v2.0.0)
+🔍 View release v2.0.0 on GitHub: [v2.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v2.0.0)
 - LocalStorage integration
 - Script editing modal
 - Smart match validation
