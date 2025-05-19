@@ -150,10 +150,10 @@ Script Include & Function Usage with Local Storage/
 
 ### 🔖 Version 3.0.0 (Latest)
 📁 View this release on GitHub: [v3.0.0](https://github.com/ServiceNow-Tsvetomir-PDI-Lab/TG-Usage-Relationship-Objects/releases/tag/tg-usage-field-finder%E2%80%93v3.0.0)  
-- Redesigned visual layout for better user experience (closer to Tailwind/NextJS standards)
-- Refactored recent search input with inline Copy button
+- Redesigned visual layout for a better user experience
+- Refactored recent search input with an inline Copy button
 - Improved accordion-style panels with contextual icons and dynamic collapsing
-- Reorganized results to appear two per row (cards)
+- Reorganized results to appear as rows (cards)
 - Updated local storage logic with better cleanup and formatting
 - Clean separation of sections in CSS and HTML for better readability
 - Bug fixes and performance enhancements
